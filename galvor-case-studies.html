@@ -1,0 +1,1523 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Galvor — Case Studies</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,500;0,600;1,300;1,500&family=Syne:wght@400;600;700;800&family=Source+Serif+4:ital,opsz,wght@0,8..60,300;0,8..60,400;1,8..60,300&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg:       #070A10;
+      --surface:  #0D1118;
+      --card:     #111620;
+      --border:   rgba(196, 163, 90, 0.12);
+      --gold:     #C4A35A;
+      --gold-dim: rgba(196, 163, 90, 0.15);
+      --text:     #EDE8DF;
+      --muted:    #9898AC;
+      --faint:    rgba(237, 232, 223, 0.05);
+
+      --c1: #C47A6F;  /* rose    – mothers */
+      --c2: #9A7AC4;  /* violet  – fragrance */
+      --c3: #7AAF8A;  /* sage    – e-commerce */
+      --c4: #5A8FC4;  /* blue    – brand safety */
+      --c5: #C47A52;  /* terracotta – personal care */
+      --c6: #5AC4C4;  /* cyan    – analytics */
+    }
+
+    html { scroll-behavior: smooth; font-size: 16px; }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: 'Source Serif 4', Georgia, serif;
+      font-weight: 300;
+      line-height: 1.75;
+      overflow-x: hidden;
+    }
+
+    /* ── SCROLL PROGRESS ── */
+    #progress-bar {
+      position: fixed;
+      top: 0; left: 0;
+      height: 2px;
+      background: linear-gradient(90deg, var(--gold), var(--c6));
+      width: 0%;
+      z-index: 1000;
+      transition: width 0.1s linear;
+    }
+
+    /* ── NAV ── */
+    nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 900;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 1.25rem 3rem;
+      background: rgba(7, 10, 16, 0.82);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .nav-logo {
+      font-family: 'Syne', sans-serif;
+      font-weight: 800;
+      font-size: 1.1rem;
+      letter-spacing: 0.12em;
+      color: var(--gold);
+      text-decoration: none;
+      text-transform: uppercase;
+    }
+
+
+
+    /* ── HERO ── */
+    #hero {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 8rem 2rem 6rem;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero-bg {
+      position: absolute;
+      inset: 0;
+      background:
+        radial-gradient(ellipse 80% 60% at 50% 40%, rgba(196, 163, 90, 0.06) 0%, transparent 70%),
+        repeating-linear-gradient(
+          0deg,
+          transparent,
+          transparent 79px,
+          rgba(196, 163, 90, 0.04) 80px
+        ),
+        repeating-linear-gradient(
+          90deg,
+          transparent,
+          transparent 79px,
+          rgba(196, 163, 90, 0.04) 80px
+        );
+      pointer-events: none;
+    }
+
+    .hero-eyebrow {
+      font-family: 'Syne', sans-serif;
+      font-size: 0.65rem;
+      font-weight: 700;
+      letter-spacing: 0.3em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 2rem;
+      opacity: 0;
+      animation: fadeUp 0.8s ease forwards 0.3s;
+    }
+
+    .hero-title {
+      font-family: 'Cormorant Garamond', Georgia, serif;
+      font-size: clamp(3.5rem, 8vw, 7rem);
+      font-weight: 300;
+      line-height: 1.05;
+      letter-spacing: -0.01em;
+      color: var(--text);
+      max-width: 900px;
+      opacity: 0;
+      animation: fadeUp 0.9s ease forwards 0.5s;
+    }
+
+    .hero-title em {
+      font-style: italic;
+      color: var(--gold);
+    }
+
+    .hero-sub {
+      margin-top: 2rem;
+      font-size: 1rem;
+      font-weight: 300;
+      color: var(--muted);
+      max-width: 560px;
+      opacity: 0;
+      animation: fadeUp 0.9s ease forwards 0.7s;
+      font-style: italic;
+    }
+
+    .hero-pills {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.75rem;
+      justify-content: center;
+      margin-top: 3.5rem;
+      opacity: 0;
+      animation: fadeUp 0.9s ease forwards 0.9s;
+    }
+
+    .hero-pill {
+      font-family: 'Syne', sans-serif;
+      font-size: 0.65rem;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      padding: 0.5rem 1.1rem;
+      border-radius: 2rem;
+      border: 1px solid var(--border);
+      color: var(--muted);
+      text-decoration: none;
+      transition: all 0.25s;
+      background: var(--faint);
+    }
+
+    .hero-pill:hover {
+      border-color: var(--gold);
+      color: var(--gold);
+      background: var(--gold-dim);
+    }
+
+    /* ── CASE STUDY ── */
+    .case {
+      position: relative;
+      padding: 8rem 0;
+      border-top: 1px solid var(--border);
+      opacity: 0;
+      transform: translateY(40px);
+      transition: opacity 0.8s ease, transform 0.8s ease;
+    }
+
+    .case.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .case-inner {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 0 3rem;
+      display: grid;
+      grid-template-columns: 280px 1fr;
+      gap: 5rem;
+    }
+
+    /* ── SIDEBAR ── */
+    .case-sidebar {
+      position: sticky;
+      top: 7rem;
+      align-self: start;
+    }
+
+    .case-number {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 5rem;
+      font-weight: 300;
+      line-height: 1;
+      color: var(--border);
+      letter-spacing: -0.03em;
+      margin-bottom: 1.5rem;
+    }
+
+    .case-tag {
+      display: inline-block;
+      font-family: 'Syne', sans-serif;
+      font-size: 0.6rem;
+      font-weight: 700;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      padding: 0.35rem 0.75rem;
+      border-radius: 0.25rem;
+      margin-bottom: 0.5rem;
+    }
+
+    .case-client {
+      font-family: 'Syne', sans-serif;
+      font-size: 0.65rem;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-top: 1rem;
+      line-height: 1.6;
+    }
+
+    .case-divider {
+      width: 2rem;
+      height: 1px;
+      margin: 1.5rem 0;
+    }
+
+    /* ── CONTENT ── */
+    .case-content {}
+
+    .case-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(1.8rem, 3vw, 2.8rem);
+      font-weight: 500;
+      line-height: 1.2;
+      letter-spacing: -0.01em;
+      color: var(--text);
+      margin-bottom: 3rem;
+    }
+
+    .case-title em { font-style: italic; }
+
+    .section-label {
+      font-family: 'Syne', sans-serif;
+      font-size: 0.6rem;
+      font-weight: 700;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 0.75rem;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .section-label::before {
+      content: '';
+      display: inline-block;
+      width: 1rem;
+      height: 1px;
+      background: var(--muted);
+    }
+
+    p {
+      color: var(--text);
+      opacity: 0.92;
+      margin-bottom: 1.25rem;
+      font-size: 0.975rem;
+    }
+
+    .pullquote {
+      margin: 2.5rem 0;
+      padding: 2rem 2.5rem;
+      border-left: 3px solid;
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.3rem;
+      font-style: italic;
+      font-weight: 300;
+      line-height: 1.5;
+      background: var(--faint);
+      border-radius: 0 0.5rem 0.5rem 0;
+    }
+
+    /* ── LISTS ── */
+    .bullet-list {
+      list-style: none;
+      margin: 1rem 0 1.5rem;
+      display: flex;
+      flex-direction: column;
+      gap: 0.6rem;
+    }
+
+    .bullet-list li {
+      display: flex;
+      gap: 0.75rem;
+      font-size: 0.95rem;
+      color: var(--text);
+      opacity: 0.92;
+    }
+
+    .bullet-list li::before {
+      content: '—';
+      color: var(--muted);
+      flex-shrink: 0;
+      margin-top: 0.05rem;
+    }
+
+    /* ── SOLUTION BLOCK ── */
+    .solution-block {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 0.75rem;
+      padding: 2rem 2.5rem;
+      margin: 2rem 0;
+    }
+
+    .solution-block h4 {
+      font-family: 'Syne', sans-serif;
+      font-size: 0.8rem;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      margin-bottom: 1rem;
+    }
+
+    .solution-steps {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 0.75rem;
+    }
+
+    .solution-steps li {
+      display: flex;
+      gap: 1rem;
+      align-items: flex-start;
+      font-size: 0.925rem;
+      color: var(--text);
+      opacity: 0.92;
+    }
+
+    .step-dot {
+      width: 5px;
+      height: 5px;
+      border-radius: 50%;
+      margin-top: 0.55rem;
+      flex-shrink: 0;
+    }
+
+    /* ── IMPACT GRID ── */
+    .impact-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 1rem;
+      margin: 1.5rem 0;
+    }
+
+    .impact-card {
+      padding: 1.5rem;
+      border-radius: 0.5rem;
+      border: 1px solid var(--border);
+      background: var(--faint);
+    }
+
+    .impact-card .metric {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 2.5rem;
+      font-weight: 500;
+      line-height: 1;
+      margin-bottom: 0.5rem;
+    }
+
+    .impact-card p {
+      font-size: 0.8rem;
+      color: var(--muted);
+      margin: 0;
+      opacity: 1;
+      font-family: 'Syne', sans-serif;
+      font-weight: 600;
+      letter-spacing: 0.05em;
+    }
+
+    .impact-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 0.75rem;
+      margin: 1rem 0;
+    }
+
+    .impact-list li {
+      display: flex;
+      gap: 0.75rem;
+      align-items: flex-start;
+      font-size: 0.925rem;
+    }
+
+    .impact-list li strong {
+      font-weight: 400;
+    }
+
+    .check {
+      color: var(--gold);
+      font-size: 0.8rem;
+      margin-top: 0.15rem;
+      flex-shrink: 0;
+    }
+
+    /* ── NEW BADGE ── */
+    .new-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      font-family: 'Syne', sans-serif;
+      font-size: 0.55rem;
+      font-weight: 800;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--gold);
+      background: var(--gold-dim);
+      border: 1px solid rgba(196, 163, 90, 0.3);
+      padding: 0.25rem 0.6rem;
+      border-radius: 2rem;
+      margin-left: 0.75rem;
+      vertical-align: middle;
+    }
+
+
+    /* ── EXPERIMENT BLOCKS ── */
+    .experiment-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+      margin: 1.25rem 0;
+    }
+
+    .experiment-item {
+      display: flex;
+      gap: 1rem;
+      padding: 1.25rem 1.5rem;
+      background: var(--card);
+      border-radius: 0.5rem;
+      border: 1px solid var(--border);
+    }
+
+    .experiment-icon {
+      font-size: 1.25rem;
+      flex-shrink: 0;
+      margin-top: 0.1rem;
+    }
+
+    .experiment-item strong {
+      display: block;
+      font-family: 'Syne', sans-serif;
+      font-size: 0.75rem;
+      font-weight: 700;
+      letter-spacing: 0.05em;
+      margin-bottom: 0.25rem;
+      color: var(--text);
+    }
+
+    .experiment-item p {
+      font-size: 0.875rem;
+      color: var(--muted);
+      margin: 0;
+      opacity: 1;
+    }
+
+    /* ── SUB-SECTION HEADING ── */
+    .sub-heading {
+      font-family: 'Syne', sans-serif;
+      font-size: 0.75rem;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      margin: 2rem 0 0.75rem;
+    }
+
+    /* ── APPROACH STEPS ── */
+    .approach-steps {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 0;
+      margin: 1rem 0 1.5rem;
+      border-left: 1px solid var(--border);
+      padding-left: 1.5rem;
+    }
+
+    .approach-steps li {
+      position: relative;
+      padding: 0 0 1rem 0;
+      font-size: 0.925rem;
+      color: var(--text);
+      opacity: 0.92;
+    }
+
+    .approach-steps li::before {
+      content: '';
+      position: absolute;
+      left: -1.85rem;
+      top: 0.5rem;
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: var(--gold);
+    }
+
+    /* ── TABLE ── */
+    .perf-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 0.8rem;
+      margin: 1.5rem 0;
+      overflow: hidden;
+      border-radius: 0.5rem;
+    }
+
+    .perf-table thead tr {
+      background: var(--card);
+    }
+
+    .perf-table th {
+      font-family: 'Syne', sans-serif;
+      font-size: 0.6rem;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--muted);
+      padding: 0.85rem 1rem;
+      text-align: left;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .perf-table td {
+      padding: 0.75rem 1rem;
+      color: var(--text);
+      opacity: 0.92;
+      border-bottom: 1px solid rgba(196, 163, 90, 0.06);
+    }
+
+    .perf-table tbody tr:hover {
+      background: var(--faint);
+    }
+
+    .perf-table td:first-child {
+      font-weight: 400;
+      font-family: 'Syne', sans-serif;
+      font-size: 0.7rem;
+      letter-spacing: 0.03em;
+    }
+
+    /* ── WHY MATTERS ── */
+    .why-box {
+      margin-top: 3rem;
+      padding: 2rem 2.5rem;
+      border-radius: 0.75rem;
+      background: var(--surface);
+      border: 1px solid var(--border);
+    }
+
+    .why-box .section-label {
+      margin-bottom: 1rem;
+    }
+
+    .why-box p {
+      font-style: italic;
+      font-size: 1rem;
+    }
+
+    /* ── SECTION SPACER ── */
+    .section-gap { margin: 2.5rem 0; }
+
+    /* ── FOOTER ── */
+    footer {
+      border-top: 1px solid var(--border);
+      padding: 4rem 3rem;
+      text-align: center;
+    }
+
+    .footer-logo {
+      font-family: 'Syne', sans-serif;
+      font-size: 1.5rem;
+      font-weight: 800;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 1rem;
+    }
+
+    footer p {
+      font-size: 0.8rem;
+      color: var(--muted);
+      opacity: 1;
+      margin: 0;
+    }
+
+    /* ── ANIMATIONS ── */
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(20px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 900px) {
+      .case-inner {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+        padding: 0 1.5rem;
+      }
+      .case-sidebar { position: relative; top: auto; }
+      .case-number { font-size: 3rem; }
+      nav { padding: 1rem 1.5rem; }
+      .nav-links { display: none; }
+      #dot-nav { display: none; }
+      .impact-grid { grid-template-columns: 1fr 1fr; }
+    }
+
+    @media (max-width: 600px) {
+      .impact-grid { grid-template-columns: 1fr; }
+      .case { padding: 4rem 0; }
+      #hero { padding: 6rem 1.5rem 4rem; }
+    }
+  </style>
+</head>
+<body>
+
+  <div id="progress-bar"></div>
+
+  <nav>
+    <a class="nav-logo" href="#hero">Galvor</a>
+  </nav>
+
+  <!-- ══════════════════════════════════════
+       HERO
+  ══════════════════════════════════════ -->
+  <section id="hero">
+    <div class="hero-bg"></div>
+    <p class="hero-eyebrow">Galvor · AI Influencer Intelligence</p>
+    <h1 class="hero-title">
+      How <em>intelligence</em> shapes<br>influencer marketing
+    </h1>
+    <p class="hero-sub">
+      Six case studies showing how AI-powered discovery, vetting, onboarding,
+      and analytics drive real outcomes for brands across the GCC and India.
+    </p>
+    <div class="hero-pills">
+      <a class="hero-pill" href="#case1">TVA Group × StyleUp</a>
+      <a class="hero-pill" href="#case2">V Perfumes</a>
+      <a class="hero-pill" href="#case3">Amazon India</a>
+      <a class="hero-pill" href="#case4">Sharaf DG</a>
+      <a class="hero-pill" href="#case5">Halo Care</a>
+      <a class="hero-pill" href="#case6">Flipkart Fashion</a>
+    </div>
+  </section>
+
+
+  <!-- ══════════════════════════════════════
+       CASE 1 — CONTENT-BASED DISCOVERY
+  ══════════════════════════════════════ -->
+  <section id="case1" class="case">
+    <div class="case-inner">
+
+      <aside class="case-sidebar">
+        <div class="case-number">01</div>
+        <span class="case-tag" style="background:rgba(196,122,111,0.12);color:var(--c1);">Influencer Discovery</span>
+        <p class="case-client">TVA Group (Dentsu)<br>for StyleUp · Aditya Birla<br>&amp; Flipkart Fashion</p>
+        <div class="case-divider" style="background:var(--c1);"></div>
+      </aside>
+
+      <div class="case-content">
+        <h2 class="case-title">
+          How TVA Group (Now Part of Dentsu) Used AI to Discover Influencers Who
+          <em>Authentically Talk About Their Mothers</em>—Repeatedly
+        </h2>
+
+        <p class="section-label">Context</p>
+        <p>
+          TVA Group, now part of Dentsu, was tasked with launching a heartwarming influencer campaign around
+          motherhood and family bonding for two clients simultaneously—StyleUp (Aditya Birla Group) and
+          Flipkart Fashion. The goal went beyond finding popular creators.
+        </p>
+        <div class="pullquote" style="border-color:var(--c1);">
+          "Find creators who don't just mention their mom on Mother's Day—but actually talk about her
+          across multiple posts, like she's a real part of their story."
+        </div>
+        <p>
+          The campaign required influencers whose connection with their mothers came through naturally
+          and frequently—something no basic search method could surface.
+        </p>
+
+        <div class="section-gap"></div>
+        <p class="section-label">Challenges</p>
+        <ul class="bullet-list">
+          <li>Hashtag-based filtering (#mom, #mothersday) was too seasonal and surface-level</li>
+          <li>Bios rarely reflect personal relationships</li>
+          <li>Visual scans couldn't capture the context of the relationship</li>
+          <li>Manual review of post transcripts was unscalable under a fast campaign timeline</li>
+        </ul>
+
+        <div class="section-gap"></div>
+        <p class="section-label">Solution</p>
+        <p>
+          <strong>Topic Detection Through NLP-Powered Caption &amp; Transcript Analysis.</strong>
+          Galvor's AI-powered influencer intelligence platform leverages advanced Natural Language
+          Processing to semantically analyse influencer content across platforms.
+        </p>
+        <div class="solution-block" style="border-color:rgba(196,122,111,0.2);">
+          <h4 style="color:var(--c1);">How it worked</h4>
+          <ul class="solution-steps">
+            <li><span class="step-dot" style="background:var(--c1);"></span>Parsed post captions, video transcripts, and audio descriptions from over <strong>800 lifestyle creators</strong></li>
+            <li><span class="step-dot" style="background:var(--c1);"></span>Detected recurring patterns linked to "motherhood": sentimental phrases, narrative anecdotes, daily mentions and role-modelling references</li>
+            <li><span class="step-dot" style="background:var(--c1);"></span>Distinguished between <em>genuine mentions</em> vs one-off promotional posts</li>
+            <li><span class="step-dot" style="background:var(--c1);"></span>Scored influencers on Frequency, Depth of reference, and Engagement on mom-specific posts</li>
+          </ul>
+        </div>
+
+        <figure style="margin:2rem 0;text-align:center;">
+          <img src="galvor-images/image6.png" alt="Galvor platform output showing frequency of mom-related content across influencers" style="max-width:100%;border-radius:0.5rem;border:1px solid var(--border);">
+          <figcaption style="font-family:'Syne',sans-serif;font-size:0.6rem;letter-spacing:0.1em;text-transform:uppercase;color:var(--muted);margin-top:0.75rem;">Sample platform output — frequency of mom-related content per creator</figcaption>
+        </figure>
+
+        <p class="section-label">Impact</p>
+        <ul class="impact-list">
+          <li><span class="check">✦</span>A qualified list of influencers who had consistently talked about their moms across multiple posts</li>
+          <li><span class="check">✦</span>Annotated post samples showing context-rich maternal mentions</li>
+          <li><span class="check">✦</span>Audience engagement metrics specific to "mom" content, helping the brand predict emotional resonance</li>
+          <li><span class="check">✦</span>Confident, data-backed creator proposals—not guesswork</li>
+        </ul>
+
+        <div class="why-box">
+          <p class="section-label" style="margin-bottom:0.75rem;">Why it matters</p>
+          <p>
+            The right influencer isn't just someone with reach—it's someone with a real story to tell.
+            AI-based topic modelling lets you discover influencers who align with the
+            <em>emotional depth</em> of your campaign, scale storytelling-specific discovery without
+            compromising nuance, and deliver campaigns that feel genuine and audience-aligned.
+            <strong style="color:var(--gold);">Emotion + intelligence = resonance.</strong>
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ══════════════════════════════════════
+       CASE 2 — HYPER-LOCAL DISCOVERY
+  ══════════════════════════════════════ -->
+  <section id="case2" class="case">
+    <div class="case-inner">
+
+      <aside class="case-sidebar">
+        <div class="case-number">02</div>
+        <span class="case-tag" style="background:rgba(154,122,196,0.12);color:var(--c2);">Hyper-Local Discovery</span>
+        <p class="case-client">V Perfumes<br>UAE Premium Fragrance<br>· GCC Campaign</p>
+        <div class="case-divider" style="background:var(--c2);"></div>
+      </aside>
+
+      <div class="case-content">
+        <h2 class="case-title">
+          How V Perfumes Found <em>Hyper-Local, Language-Aligned</em>
+          Influencers to Connect with Immigrant Audiences
+        </h2>
+
+        <p class="section-label">Context</p>
+        <p>
+          V Perfumes, a premium UAE fragrance house known for its modern take on traditional scents—
+          oudh, bakhoor, and musk—was planning a storytelling-first influencer campaign across major
+          GCC cities. In a country where immigrant communities form the cultural majority, the brief
+          wasn't about showcasing luxury. It was about <em>speaking in their languages</em>.
+        </p>
+        <p>
+          The brand needed influencers using the hyper-local voices heard in homes, souks, salons,
+          and taxis—ensuring products felt culturally familiar, not aspirationally distant.
+        </p>
+
+        <div class="section-gap"></div>
+        <p class="section-label">Challenges</p>
+        <p>Standard influencer tools could filter by country, follower count, and general category. But they couldn't answer:</p>
+        <ul class="bullet-list">
+          <li>Does this influencer speak Hindi or Malayalam?</li>
+          <li>Do they use Sudanese Arabic or Egyptian slang?</li>
+          <li>Do they code-switch between Urdu and Khaleeji in their stories?</li>
+        </ul>
+        <p>Manually checking every post and video would be slow, subjective, and impossible to scale under a tight timeline.</p>
+
+        <div class="section-gap"></div>
+        <p class="section-label">Solution</p>
+        <div class="solution-block" style="border-color:rgba(154,122,196,0.2);">
+          <h4 style="color:var(--c2);">Language-Driven Vetting with Galvor AI</h4>
+          <ul class="solution-steps">
+            <li><span class="step-dot" style="background:var(--c2);"></span>Parsed captions, video/audio transcripts, and speech patterns across a large pool of UAE-based creators</li>
+            <li><span class="step-dot" style="background:var(--c2);"></span>Applied natural language detection to tag influencers by primary language, informal/colloquial speech (Hinglish, Arabizi), and code-switching patterns</li>
+            <li><span class="step-dot" style="background:var(--c2);"></span>Grouped by hyper-local identity: Malayalam · Tagalog · Urdu &amp; Punjabi · Sudanese, Yemeni &amp; Levantine Arabic</li>
+            <li><span class="step-dot" style="background:var(--c2);"></span>Curated a shortlist of <strong>150+ influencers open for barter collaborations</strong></li>
+          </ul>
+        </div>
+
+        <p class="section-label">Impact</p>
+        <div class="impact-grid">
+          <div class="impact-card">
+            <div class="metric" style="color:var(--c2);">4–5</div>
+            <p>Days of manual vetting eliminated</p>
+          </div>
+          <div class="impact-card">
+            <div class="metric" style="color:var(--c2);">150+</div>
+            <p>Language-verified creators shortlisted</p>
+          </div>
+          <div class="impact-card">
+            <div class="metric" style="color:var(--c2);">↑</div>
+            <p>Organic engagement via native-language content</p>
+          </div>
+        </div>
+        <p>The campaign didn't just showcase fragrance—it evoked memory, belonging, and personal identity. Content in native tongues felt like a conversation, not a promotion.</p>
+
+        <div class="why-box">
+          <p class="section-label" style="margin-bottom:0.75rem;">Why it matters</p>
+          <p>
+            In diverse markets like the UAE, <em>hyper-local relevance beats broad appeal</em>. For brands
+            serving immigrant or multicultural audiences, heritage products, or community-first campaigns—
+            <strong style="color:var(--gold);">language is the bridge to trust.</strong>
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ══════════════════════════════════════
+       CASE 3 — VISUAL ATTRIBUTE DISCOVERY
+  ══════════════════════════════════════ -->
+  <section id="case3" class="case">
+    <div class="case-inner">
+
+      <aside class="case-sidebar">
+        <div class="case-number">03</div>
+        <span class="case-tag" style="background:rgba(122,175,138,0.12);color:var(--c3);">Visual AI Discovery</span>
+        <p class="case-client">Amazon India<br>Live Commerce<br>· Creator Campaigns</p>
+        <div class="case-divider" style="background:var(--c3);"></div>
+      </aside>
+
+      <div class="case-content">
+        <h2 class="case-title">
+          Accelerating Influencer-Brand Fit:<br>
+          <em>Visual Attribute-Based Discovery</em> at Amazon India's Live Commerce Platform
+        </h2>
+
+        <p class="section-label">Context</p>
+        <p>
+          Amazon India runs high-impact creator-led campaigns on its live commerce platform—where
+          brands showcase products and engage buyers in real-time. Every product demands a very
+          specific kind of influencer. Shaving kits need bearded, fashion-forward creators. Baby
+          care products need parenting influencers—but not just any parent; ones with kids under 3.
+        </p>
+
+        <div class="section-gap"></div>
+        <p class="section-label">Challenges</p>
+        <p>The manual process before Galvor:</p>
+        <ul class="approach-steps">
+          <li>Discovery based on follower count and engagement metrics</li>
+          <li>Manual review of hundreds of profiles</li>
+          <li>Manual visual checks to validate influencer relevance</li>
+          <li>~2–3 man-days per campaign just for shortlisting</li>
+        </ul>
+        <p>Time-intensive, inefficient, and subjective—especially for fast-turnaround live commerce events.</p>
+
+        <div class="section-gap"></div>
+        <p class="section-label">Solution</p>
+        <p>For the <strong>Baby Care Products Campaign</strong>, the brand needed parenting influencers with kids under 3.</p>
+        <div class="solution-block" style="border-color:rgba(122,175,138,0.2);">
+          <h4 style="color:var(--c3);">Galvor AI-powered Visual Discovery</h4>
+          <ul class="solution-steps">
+            <li><span class="step-dot" style="background:var(--c3);"></span>Analysed over <strong>500 influencers</strong> in the Family &amp; Parenting category</li>
+            <li><span class="step-dot" style="background:var(--c3);"></span>Filtered using profile photos, bio keywords, and latest media posts</li>
+            <li><span class="step-dot" style="background:var(--c3);"></span>Shortlisted only those with a young child visible in recent content, matching engagement and follower criteria, and showing authentic parenting content</li>
+          </ul>
+        </div>
+
+        <figure style="margin:2rem 0;text-align:center;">
+          <img src="galvor-images/image23.png" alt="Final output showing influencers with verified child age" style="max-width:100%;border-radius:0.5rem;border:1px solid var(--border);">
+          <figcaption style="font-family:'Syne',sans-serif;font-size:0.6rem;letter-spacing:0.1em;text-transform:uppercase;color:var(--muted);margin-top:0.75rem;">Final output — verified child age per influencer</figcaption>
+        </figure>
+
+        <p class="section-label">Impact</p>
+        <div class="impact-grid">
+          <div class="impact-card">
+            <div class="metric" style="color:var(--c3);">2+</div>
+            <p>Man-days saved in influencer discovery</p>
+          </div>
+          <div class="impact-card">
+            <div class="metric" style="color:var(--c3);">⚡</div>
+            <p>Highly relevant shortlist delivered instantly</p>
+          </div>
+          <div class="impact-card">
+            <div class="metric" style="color:var(--c3);">↑</div>
+            <p>More time for scripting, pre-production, and creative</p>
+          </div>
+        </div>
+
+        <div class="why-box">
+          <p class="section-label" style="margin-bottom:0.75rem;">Why it matters</p>
+          <p>
+            AI can drastically reduce time-to-launch, even when nuanced criteria like
+            "parent with a toddler" are involved. <em>You don't need to compromise between speed and specificity.</em>
+            If your team is scaling live commerce or category-specific influencer pushes,
+            visual attribute discovery gives you an <strong style="color:var(--gold);">unfair advantage</strong>.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ══════════════════════════════════════
+       CASE 4 — BRAND SAFETY / SHARAF DG
+  ══════════════════════════════════════ -->
+  <section id="case4" class="case">
+    <div class="case-inner">
+
+      <aside class="case-sidebar">
+        <div class="case-number">04</div>
+        <span class="case-tag" style="background:rgba(90,143,196,0.12);color:var(--c4);">Brand Safety &amp; Commerce</span>
+        <p class="case-client">Sharaf DG<br>UAE Electronics<br>· MacBook Air M4 Launch</p>
+        <div class="case-divider" style="background:var(--c4);"></div>
+      </aside>
+
+      <div class="case-content">
+        <h2 class="case-title">
+          How Sharaf DG Drove MacBook Air M4 Footfall with
+          <em>Brand-Safe Creator Selection</em> in Dubai
+        </h2>
+
+        <p class="section-label">Context</p>
+        <p>
+          For the MacBook Air M4 launch in 2025, Sharaf DG—the UAE's leading electronics retailer—had
+          two goals: build a brand-safe creator roster that authentically represented the Apple ecosystem,
+          and convert online buzz into real footfall across its flagship stores in Dubai.
+        </p>
+        <p>
+          In a market saturated with creator-led tech content, one misaligned post from an influencer
+          who'd previously endorsed Windows laptops could undermine the entire campaign. Getting the
+          creator selection right wasn't just a brand safety exercise—it was the foundation for driving
+          people into stores on launch day.
+        </p>
+
+        <div class="section-gap"></div>
+        <p class="section-label">Solution</p>
+        <div class="solution-block" style="border-color:rgba(90,143,196,0.2);">
+          <h4 style="color:var(--c4);">Phase 1 — Brand Safety Vetting with Galvor AI</h4>
+          <ul class="solution-steps">
+            <li><span class="step-dot" style="background:var(--c4);"></span>Parsed historic posts, captions, tags, and hashtags across all platforms</li>
+            <li><span class="step-dot" style="background:var(--c4);"></span>Flagged any mention of Windows-based devices, Windows logos or product placements, and hashtags linked to competitor campaigns</li>
+            <li><span class="step-dot" style="background:var(--c4);"></span>Ranked brand fit score based on topical consistency and product category overlap</li>
+            <li><span class="step-dot" style="background:var(--c4);"></span>Delivered a confidence report within <strong>minutes</strong>: 0 instances of Windows endorsements in the last 12 months</li>
+          </ul>
+        </div>
+
+        <figure style="margin:2rem 0;text-align:center;">
+          <img src="galvor-images/image19.png" alt="Galvor AI search for Windows-based content in last 3 months" style="max-width:100%;border-radius:0.5rem;border:1px solid var(--border);">
+          <figcaption style="font-family:'Syne',sans-serif;font-size:0.6rem;letter-spacing:0.1em;text-transform:uppercase;color:var(--muted);margin-top:0.75rem;">Example — AI scan for Windows-based content in the past 3 months</figcaption>
+        </figure>
+
+        <div class="solution-block" style="border-color:rgba(90,143,196,0.2);margin-top:1.5rem;">
+          <h4 style="color:var(--c4);">Phase 2 — Driving In-Store Footfall for the M4 Launch</h4>
+          <ul class="solution-steps">
+            <li><span class="step-dot" style="background:var(--c4);"></span>Identified Dubai-based tech and lifestyle creators whose audiences had strong overlap with key Sharaf DG retail catchment zones</li>
+            <li><span class="step-dot" style="background:var(--c4);"></span>Briefed creators to anchor content around the in-store experience—live demos, early-access events, and launch-day offers—with YouTube UTM tracking on every link</li>
+            <li><span class="step-dot" style="background:var(--c4);"></span>Coordinated content drops in sync with launch-day store openings, converting online buzz into physical foot traffic</li>
+          </ul>
+        </div>
+
+        <p class="section-label">Impact</p>
+        <div class="impact-grid">
+          <div class="impact-card">
+            <div class="metric" style="color:var(--c4);">250k</div>
+            <p>Content views across the campaign</p>
+          </div>
+          <div class="impact-card">
+            <div class="metric" style="color:var(--c4);">1,200+</div>
+            <p>In-store visits tracked via UTM links</p>
+          </div>
+          <div class="impact-card">
+            <div class="metric" style="color:var(--c4);">0.5%</div>
+            <p>View-to-visit conversion rate</p>
+          </div>
+          <div class="impact-card">
+            <div class="metric" style="color:var(--c4);">100%</div>
+            <p>Brand safety — zero competitor conflicts found</p>
+          </div>
+        </div>
+
+        <div class="why-box">
+          <p class="section-label" style="margin-bottom:0.75rem;">Why it matters</p>
+          <p>
+            Brand safety and commerce aren't separate goals—they're two sides of the same coin.
+            Getting the right creator locked in is what makes a launch campaign credible online
+            <em>and</em> effective on the ground.
+            <strong style="color:var(--gold);">Precision in selection = performance at every touchpoint.</strong>
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ══════════════════════════════════════
+       CASE 5 — UGC CREATOR ONBOARDING
+  ══════════════════════════════════════ -->
+  <section id="case5" class="case">
+    <div class="case-inner">
+
+      <aside class="case-sidebar">
+        <div class="case-number">05</div>
+        <span class="case-tag" style="background:rgba(196,122,82,0.12);color:var(--c5);">Creator Onboarding</span>
+        <p class="case-client">Halo Care<br>Men's Personal Care<br>· India Nationwide</p>
+        <div class="case-divider" style="background:var(--c5);"></div>
+      </aside>
+
+      <div class="case-content">
+        <h2 class="case-title">
+          How Halo Care Launched Fast and <em>Iterated Even Faster</em> with Structured Creator Experimentation
+        </h2>
+
+        <p class="section-label">Context</p>
+        <p>
+          Halo Care, a fast-growing men's personal care brand offering face washes, shaving kits, and
+          beard oils, came to Galvor with a two-part brief: get a nationwide creator campaign live
+          <em>fast</em>, then figure out what was actually working—fast. They didn't just want reach;
+          they wanted a system for continuously optimising which creators, regions, and content tones
+          drove the best results with urban millennial and Gen Z audiences across India.
+        </p>
+
+        <div class="section-gap"></div>
+        <p class="section-label">Challenges</p>
+        <p>Traditional outreach looked like this:</p>
+        <ul class="bullet-list">
+          <li>Export influencer lists from discovery tools</li>
+          <li>Manually find and message creators via Instagram or email</li>
+          <li>Wait days for replies, then re-explain the brand in every thread</li>
+          <li>Track responses, budgets, and contracts across scattered spreadsheets</li>
+        </ul>
+        <p>Time-consuming, repetitive, prone to drop-offs, and difficult to manage for 50+ influencers simultaneously.</p>
+
+        <div class="section-gap"></div>
+        <p class="section-label">Solution</p>
+        <p>The brand partnered with <strong>Galvor's Influencer Onboarding Team</strong>—a dedicated service arm that handled end-to-end coordination with shortlisted creators.</p>
+        <div class="solution-block" style="border-color:rgba(196,122,82,0.2);">
+          <h4 style="color:var(--c5);">What Galvor delivered as a service</h4>
+          <ul class="solution-steps">
+            <li><span class="step-dot" style="background:var(--c5);"></span><strong>Influencer Outreach:</strong> Reached out to 70+ pre-approved creators with personalized communication; shared briefs, timelines, and sample creatives; managed all back-and-forth</li>
+            <li><span class="step-dot" style="background:var(--c5);"></span><strong>Qualification &amp; Vetting:</strong> Held intro calls to evaluate tone, content alignment, and professionalism; flagged potential brand fit issues</li>
+            <li><span class="step-dot" style="background:var(--c5);"></span><strong>Rate Negotiation &amp; Contracting:</strong> Negotiated within target CPM brackets; finalized scopes of work; secured digital sign-offs</li>
+            <li><span class="step-dot" style="background:var(--c5);"></span><strong>Hand-Off:</strong> Delivered a fully onboarded list—ready with content ideas, schedules, and point-of-contact details</li>
+          </ul>
+        </div>
+
+        <div class="solution-block" style="border-color:rgba(196,122,82,0.2);margin-top:1.5rem;">
+          <h4 style="color:var(--c5);">Part 2 — Creator Experimentation for Faster Iteration</h4>
+          <p style="font-size:0.9rem;color:var(--text);opacity:0.8;margin-bottom:1.25rem;">
+            Rather than committing the full budget to a single creator archetype, Halo Care and Galvor
+            ran simultaneous tests across distinct cohorts—enabling sprint-by-sprint learning.
+          </p>
+          <ul class="experiment-list" style="margin:0;">
+            <li class="experiment-item">
+              <span class="experiment-icon">✂️</span>
+              <div>
+                <strong>Bald creators vs. non-bald creators</strong>
+                <p>Testing whether a men's grooming brand resonated more authentically with creators who were visibly invested in their own appearance and grooming journey</p>
+              </div>
+            </li>
+            <li class="experiment-item">
+              <span class="experiment-icon">🗺️</span>
+              <div>
+                <strong>Regional South &amp; West vs. North East creators</strong>
+                <p>Exploring how regional dialect, cultural nuance, and audience affinity shaped trust and purchase intent across different Indian demographics</p>
+              </div>
+            </li>
+            <li class="experiment-item">
+              <span class="experiment-icon">🎭</span>
+              <div>
+                <strong>Content tone — comedic/relatable vs. tutorial-led/aspirational</strong>
+                <p>Identifying which format drove stronger engagement and conversion intent for personal care</p>
+              </div>
+            </li>
+          </ul>
+        </div>
+
+        <figure style="margin:2rem 0;text-align:center;">
+          <img src="galvor-images/image14.png" alt="Galvor creator experimentation and analytics view" style="max-width:100%;border-radius:0.5rem;border:1px solid var(--border);">
+          <figcaption style="font-family:'Syne',sans-serif;font-size:0.6rem;letter-spacing:0.1em;text-transform:uppercase;color:var(--muted);margin-top:0.75rem;">Creator cohort tracking — Galvor platform</figcaption>
+        </figure>
+
+        <p>
+          Galvor's tagging and performance analytics layer enabled sprint-by-sprint insights—the brand
+          didn't wait weeks for a post-campaign debrief. Each iteration fed directly into the next:
+          sharper creator shortlisting, tighter content direction, and faster time-to-launch every cycle.
+        </p>
+
+        <p class="section-label">Impact</p>
+        <div class="impact-grid">
+          <div class="impact-card">
+            <div class="metric" style="color:var(--c5);">10→5</div>
+            <p>Days to onboard creators — cut in half</p>
+          </div>
+          <div class="impact-card">
+            <div class="metric" style="color:var(--c5);">70+</div>
+            <p>Creators reached with personalised outreach</p>
+          </div>
+          <div class="impact-card">
+            <div class="metric" style="color:var(--c5);">3x</div>
+            <p>Cohorts tested simultaneously for faster creative learnings</p>
+          </div>
+        </div>
+
+        <div class="why-box">
+          <p class="section-label" style="margin-bottom:0.75rem;">Why it matters</p>
+          <p>
+            Launching fast is table stakes. The real edge comes from building a system that tells you
+            <em>what's working</em> fast enough to act on it. Structured creator experimentation—with the
+            right analytics layer—turns every campaign into a learning loop.
+            <strong style="color:var(--gold);">Launch fast. Learn faster. Scale what works.</strong>
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ══════════════════════════════════════
+       CASE 6 — CAMPAIGN ANALYTICS
+  ══════════════════════════════════════ -->
+  <section id="case6" class="case">
+    <div class="case-inner">
+
+      <aside class="case-sidebar">
+        <div class="case-number">06</div>
+        <span class="case-tag" style="background:rgba(90,196,196,0.12);color:var(--c6);">Analytics &amp; Intelligence</span>
+        <p class="case-client">Flipkart Fashion<br>India's #1 Fashion<br>E-Commerce Platform</p>
+        <div class="case-divider" style="background:var(--c6);"></div>
+      </aside>
+
+      <div class="case-content">
+        <h2 class="case-title">
+          How TVA Group (Now Part of Dentsu) Unlocked <em>Deep Content Intelligence</em>
+          for Flipkart Fashion's Creator Campaigns
+        </h2>
+
+        <p class="section-label">Context</p>
+        <p>
+          Flipkart Fashion, one of India's largest fashion e-commerce platforms, engaged TVA Group
+          for a full social audit spanning 6 months of content, ad spend, and influencer activity.
+          The ask: go beyond vanity metrics and surface the specific content formats, tones, and
+          creator archetypes that actually drive followers, engagement, and cost efficiency.
+        </p>
+        <p>
+          Galvor's AI-powered analytics engine processed 242 posts, ₹30L+ in video ad spend, and
+          a sample set of creator profiles — delivering an intelligence framework that feeds directly
+          into future briefs.
+        </p>
+
+        <!-- ACCOUNT OVERVIEW -->
+        <div class="section-gap"></div>
+        <p class="section-label">Account Overview — Last 6 Months</p>
+        <div class="impact-grid" style="grid-template-columns:repeat(3,1fr);margin-bottom:0.5rem;">
+          <div class="impact-card">
+            <div class="metric" style="color:var(--c6);">332K</div>
+            <p>Followers</p>
+          </div>
+          <div class="impact-card">
+            <div class="metric" style="color:var(--c6);">242</div>
+            <p>Posts in 6 months</p>
+          </div>
+          <div class="impact-card">
+            <div class="metric" style="color:var(--c6);">Nov</div>
+            <p>Peak engagement month (Diwali season)</p>
+          </div>
+        </div>
+        <div class="impact-grid" style="grid-template-columns:repeat(3,1fr);">
+          <div class="impact-card">
+            <div class="metric" style="color:var(--c6);">1,211</div>
+            <p>Avg. likes per post</p>
+          </div>
+          <div class="impact-card">
+            <div class="metric" style="color:var(--c6);">431</div>
+            <p>Avg. comments per post</p>
+          </div>
+          <div class="impact-card">
+            <div class="metric" style="color:var(--c6);">10.97%</div>
+            <p>Engagement depth (high-intent)</p>
+          </div>
+        </div>
+
+        <!-- CONTENT TYPE -->
+        <div class="section-gap"></div>
+        <p class="section-label">Content Type Analysis</p>
+        <p>
+          <strong>85% of all content is Video</strong>, with 100% of ad spend directed at Video.
+          Carousel posts — despite being less than 2% of content — delivered the lowest Cost Per
+          Follower (CPF) and highest engagement depth, making them a significantly underutilised format.
+        </p>
+        <table class="perf-table">
+          <thead>
+            <tr>
+              <th>Post Type</th>
+              <th># Posts</th>
+              <th>Followers Gained</th>
+              <th>CPF (INR)</th>
+              <th>Audience ER</th>
+              <th>Engagement Depth</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Carousel</td>
+              <td>4</td>
+              <td>1</td>
+              <td>—</td>
+              <td>0.10%</td>
+              <td style="color:var(--c6);font-weight:600;">6.17%</td>
+            </tr>
+            <tr>
+              <td>Image</td>
+              <td>36</td>
+              <td>17,650</td>
+              <td>—</td>
+              <td>0.06%</td>
+              <td>2.98%</td>
+            </tr>
+            <tr>
+              <td>Video</td>
+              <td>237</td>
+              <td>250,172</td>
+              <td style="color:var(--c6);font-weight:600;">₹18</td>
+              <td>0.09%</td>
+              <td>3.85%</td>
+            </tr>
+          </tbody>
+        </table>
+
+        <!-- IMAGE & CAROUSEL -->
+        <div class="section-gap"></div>
+        <p class="section-label">Image &amp; Carousel — Visual Analytics</p>
+        <p>
+          Contest and giveaway posts — and content tied to Big Billion Day — drove significantly
+          higher engagement. Posts around generic Independence Day themes or plain product displays
+          consistently underperformed.
+        </p>
+
+        <div class="solution-block" style="border-color:rgba(90,196,196,0.2);">
+          <h4 style="color:var(--c6);">Text Hook Sweet Spot: 20–30% of Screen</h4>
+          <p style="font-size:0.9rem;margin-bottom:1rem;">
+            Galvor's visual AI analysed pixel coverage of text across all image and carousel posts.
+            Both likes and comments peak when text occupies <strong style="color:var(--gold);">20–30%
+            of the post frame</strong> — and decline sharply beyond 30%.
+          </p>
+          <ul class="solution-steps">
+            <li><span class="step-dot" style="background:var(--c6);"></span><strong>Top 30% posts</strong> — dominant keywords: contest, giveaway, follow, tag, Big Billion, Wrogn, lucky winner</li>
+            <li><span class="step-dot" style="background:var(--c6);"></span><strong>Bottom 30% posts</strong> — dominant keywords: independence, fashion, spirit, free — plain posts with no interactive hook</li>
+            <li><span class="step-dot" style="background:var(--c6);"></span><strong>Best performing posts</strong>: Avg 3,332 likes · 6,197 comments (contest &amp; giveaway mechanic)</li>
+            <li><span class="step-dot" style="background:var(--c6);"></span><strong>Worst performing posts</strong>: Avg 77 likes · 1.3 comments (brand logo, product display, lifestyle shots)</li>
+          </ul>
+        </div>
+
+        <figure style="margin:2rem 0;text-align:center;">
+          <img src="galvor-images/image12.png" alt="Text pixel fraction vs engagement — Likes and Comments analysis" style="max-width:100%;border-radius:0.5rem;border:1px solid var(--border);">
+          <figcaption style="font-family:'Syne',sans-serif;font-size:0.6rem;letter-spacing:0.1em;text-transform:uppercase;color:var(--muted);margin-top:0.75rem;">Engagement analysis — likes &amp; comments by text pixel fraction (sweet spot: 20–30%)</figcaption>
+        </figure>
+
+        <!-- REELS -->
+        <div class="section-gap"></div>
+        <p class="section-label">Reels — Best Performing Formats</p>
+
+        <div class="solution-block" style="border-color:rgba(90,196,196,0.2);">
+          <h4 style="color:var(--c6);">Format Performance by Metric</h4>
+          <table class="perf-table" style="margin:0.75rem 0 0;">
+            <thead>
+              <tr>
+                <th>Metric</th>
+                <th>Best Formats</th>
+                <th>Approx. CPF</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Lowest CPF</td>
+                <td>Interactive Stories · Brand Values</td>
+                <td style="color:var(--c6);font-weight:600;">₹5 – ₹10</td>
+              </tr>
+              <tr>
+                <td>Highest Engagement Rate</td>
+                <td>Limited-Time Offers · Brand Values</td>
+                <td>₹20</td>
+              </tr>
+              <tr>
+                <td>Highest Engagement Depth</td>
+                <td>Contests &amp; Giveaways · User Generated Contests</td>
+                <td>₹20</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="solution-block" style="border-color:rgba(90,196,196,0.2);margin-top:1.5rem;">
+          <h4 style="color:var(--c6);">Tonality Performance by Metric</h4>
+          <table class="perf-table" style="margin:0.75rem 0 0;">
+            <thead>
+              <tr>
+                <th>Metric</th>
+                <th>Best Tonalities</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Lowest CPF</td>
+                <td>Optimistic · Friendly</td>
+              </tr>
+              <tr>
+                <td>Highest Engagement Rate</td>
+                <td>Informative · Optimistic</td>
+              </tr>
+              <tr>
+                <td>Highest Engagement Depth</td>
+                <td>Encouraging · Positive</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <figure style="margin:2rem 0;text-align:center;">
+          <img src="galvor-images/image22.png" alt="CPF analysis — Reel format and tonality performance" style="max-width:100%;border-radius:0.5rem;border:1px solid var(--border);">
+          <figcaption style="font-family:'Syne',sans-serif;font-size:0.6rem;letter-spacing:0.1em;text-transform:uppercase;color:var(--muted);margin-top:0.75rem;">Reel format &amp; tonality analysis — CPF vs. Audience Engagement Rate</figcaption>
+        </figure>
+
+        <!-- HOOKS FINDING -->
+        <div class="section-gap"></div>
+        <p class="section-label">The Hook Advantage</p>
+        <p>One of the most actionable findings from the audit was the correlation between creative
+        hooks and Reel performance.</p>
+
+        <div class="impact-grid" style="grid-template-columns:1fr 1fr;">
+          <div class="impact-card" style="border-color:rgba(90,196,196,0.3);">
+            <div class="metric" style="color:var(--c6);">70%</div>
+            <p>Of <strong>top-performing</strong> Reels had a funny/narrative hook (e.g. New Year Resolution, Judgemental Neighbour, Murder Scene)</p>
+          </div>
+          <div class="impact-card">
+            <div class="metric" style="color:var(--muted);">20%</div>
+            <p>Of <strong>bottom-performing</strong> Reels had a hook — plain styling videos without setup consistently underdelivered</p>
+          </div>
+        </div>
+
+        <ul class="experiment-list" style="margin:1.5rem 0;">
+          <li class="experiment-item">
+            <span class="experiment-icon">✅</span>
+            <div>
+              <strong>Best Reel — Followers Gained</strong>
+              <p>"Bindoor Chachi" concept · 46,991 followers gained · CPF ₹11.38 · ER 0.08% · Depth 4.41%</p>
+            </div>
+          </li>
+          <li class="experiment-item">
+            <span class="experiment-icon">✅</span>
+            <div>
+              <strong>Best Reel — Lowest CPF</strong>
+              <p>"Majnu's love for Laila" styling reel · 33,796 followers gained · CPF ₹6.84 · ER 0.06% · Depth 5.41%</p>
+            </div>
+          </li>
+          <li class="experiment-item">
+            <span class="experiment-icon">⚠️</span>
+            <div>
+              <strong>Worst Reel — CPF</strong>
+              <p>"Airport Pap" look styling reel — no hook · 3 followers gained · CPF ₹304.84 · ER 0.02%</p>
+            </div>
+          </li>
+        </ul>
+
+        <figure style="margin:2rem 0;text-align:center;">
+          <img src="galvor-images/image17.png" alt="Content attribute mapping — visual style, CTA framing, branding visibility" style="max-width:100%;border-radius:0.5rem;border:1px solid var(--border);">
+          <figcaption style="font-family:'Syne',sans-serif;font-size:0.6rem;letter-spacing:0.1em;text-transform:uppercase;color:var(--muted);margin-top:0.75rem;">3-month content attribute mapping — visual style, CTA framing &amp; branding visibility</figcaption>
+        </figure>
+
+        <!-- CREATOR PERFORMANCE -->
+        <div class="section-gap"></div>
+        <p class="sub-heading" style="color:var(--c6);">Creator Performance — Sample Set</p>
+        <table class="perf-table">
+          <thead>
+            <tr>
+              <th>Creator</th>
+              <th>Median Reach</th>
+              <th>Median Likes</th>
+              <th>Median Comments</th>
+              <th>Audience ER</th>
+              <th>Engagement Depth</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Flipkart Fashion (brand)</td>
+              <td>154,195</td>
+              <td>1,912</td>
+              <td>40</td>
+              <td>0.58%</td>
+              <td>2.09%</td>
+            </tr>
+            <tr>
+              <td>Abhinav Mahajan</td>
+              <td>—</td>
+              <td style="color:var(--c6);font-weight:600;">103,107</td>
+              <td>65</td>
+              <td style="color:var(--c6);font-weight:600;">31.06%</td>
+              <td>0.06%</td>
+            </tr>
+            <tr>
+              <td>Aditya Vashisht</td>
+              <td>—</td>
+              <td style="color:var(--c6);font-weight:600;">56,418</td>
+              <td>40</td>
+              <td style="color:var(--c6);font-weight:600;">16.99%</td>
+              <td>0.07%</td>
+            </tr>
+            <tr>
+              <td>Abhishek Kumaarr</td>
+              <td>12,225</td>
+              <td>5,641</td>
+              <td style="color:var(--c6);font-weight:600;">169</td>
+              <td>1.70%</td>
+              <td style="color:var(--c6);font-weight:600;">3.00%</td>
+            </tr>
+            <tr>
+              <td>Binita Budathoki</td>
+              <td>34,515</td>
+              <td>1,490</td>
+              <td>29</td>
+              <td>0.45%</td>
+              <td>1.95%</td>
+            </tr>
+            <tr>
+              <td>Moonchild</td>
+              <td>37,457</td>
+              <td>1,331</td>
+              <td>31</td>
+              <td>0.40%</td>
+              <td>2.33%</td>
+            </tr>
+          </tbody>
+        </table>
+        <p style="font-size:0.8rem;color:var(--muted);opacity:1;font-style:italic;">
+          Note: Creator data based on sample set of 1 post each. Abhinav Mahajan and Aditya Vashisht
+          lead on raw likes &amp; audience ER; Abhishek Kumaarr leads on comments and engagement depth.
+        </p>
+
+        <div class="why-box">
+          <p class="section-label" style="margin-bottom:0.75rem;">Why it matters</p>
+          <p>
+            This audit turned 6 months of content into a playbook. Funny hooks beat plain styling.
+            Contests beat product shots. Text coverage of 20–30% beats both zero and too much.
+            And the cheapest follower acquisition (CPF ₹6–₹18 via Video) coexists with the deepest
+            engagement (Carousel at 6.17% depth). <em>You don't have to guess at what works</em>—
+            <strong style="color:var(--gold);">Galvor makes the brief write itself.</strong>
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ══════════════════════════════════════
+       FOOTER
+  ══════════════════════════════════════ -->
+  <footer>
+    <div class="footer-logo">Galvor</div>
+    <p>AI-powered influencer intelligence for brands that demand precision.</p>
+  </footer>
+
+
+  <script>
+    // ── SCROLL PROGRESS
+    const bar = document.getElementById('progress-bar');
+    window.addEventListener('scroll', () => {
+      const total = document.body.scrollHeight - window.innerHeight;
+      bar.style.width = (window.scrollY / total * 100) + '%';
+    });
+
+    // ── SECTION REVEAL
+    const cases = document.querySelectorAll('.case');
+    const observer = new IntersectionObserver(entries => {
+      entries.forEach(e => {
+        if (e.isIntersecting) e.target.classList.add('visible');
+      });
+    }, { threshold: 0.07 });
+    cases.forEach(c => observer.observe(c));
+
+  </script>
+
+</body>
+</html>
