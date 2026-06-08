@@ -1,0 +1,1164 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>MaisonX × Galvor AI — Case Study</title>
+<link href="https://fonts.googleapis.com/css2?family=Merriweather+Sans:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --ink: #1a1510;
+    --parchment: #f7f3ee;
+    --cream: #efe9e0;
+    --linen: #d4c9b8;
+    --gold: #b8943f;
+    --gold-light: #d4ae5a;
+    --rust: #8b4a2f;
+    --sage: #6b7c5e;
+    --charcoal: #3d3530;
+    --white: #fdfaf7;
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'Merriweather Sans', sans-serif;
+    background: var(--parchment);
+    color: var(--ink);
+    font-weight: 300;
+    line-height: 1.7;
+  }
+
+  /* HERO */
+  .hero {
+    min-height: 100vh;
+    background: var(--ink);
+    display: grid;
+    grid-template-rows: auto auto 1fr auto;
+    position: relative;
+    overflow: hidden;
+    padding: 60px;
+  }
+
+  .hero::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background:
+      radial-gradient(ellipse 80% 60% at 70% 40%, rgba(184,148,63,0.12) 0%, transparent 60%),
+      radial-gradient(ellipse 50% 80% at 20% 80%, rgba(107,124,94,0.08) 0%, transparent 50%);
+    pointer-events: none;
+  }
+
+  .hero-tag {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    position: relative;
+    z-index: 2;
+  }
+
+  .galvor-badge {
+    font-family: 'Merriweather Sans', sans-serif;
+    font-weight: 500;
+    font-size: 11px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--gold);
+    border: 1px solid rgba(184,148,63,0.4);
+    padding: 6px 14px;
+    border-radius: 2px;
+  }
+
+  .divider-line {
+    flex: 1;
+    height: 1px;
+    background: linear-gradient(to right, rgba(184,148,63,0.4), transparent);
+  }
+
+  .case-label {
+    font-family: 'Merriweather Sans', sans-serif;
+    font-weight: 300;
+    font-size: 11px;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: rgba(212,200,184,0.6);
+  }
+
+  /* MAISON X LOGO IN HERO */
+  .hero-logo-block {
+    position: relative;
+    z-index: 2;
+    padding: 36px 0 20px;
+    border-bottom: 1px solid rgba(184,148,63,0.18);
+    margin-bottom: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 32px;
+  }
+
+  .hero-logo-left { display: flex; flex-direction: column; }
+
+  .maison-wordmark {
+    font-family: 'Merriweather Sans', sans-serif;
+    font-size: clamp(40px, 6vw, 80px);
+    font-weight: 300;
+    color: var(--white);
+    letter-spacing: -0.01em;
+    line-height: 1;
+  }
+
+  .maison-wordmark em {
+    font-style: italic;
+    color: var(--gold-light);
+  }
+
+  .hero-logo-tagline {
+    font-size: 11px;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: rgba(212,200,184,0.45);
+    margin-top: 10px;
+  }
+
+  .maison-logo-mark {
+    width: clamp(80px, 9vw, 120px);
+    height: clamp(80px, 9vw, 120px);
+    flex-shrink: 0;
+    opacity: 0.92;
+  }
+
+  .hero-center {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    position: relative;
+    z-index: 2;
+    padding: 32px 0;
+  }
+
+  .hero-eyebrow {
+    font-family: 'Merriweather Sans', sans-serif;
+    font-size: 11px;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 20px;
+  }
+
+  .hero-title {
+    font-family: 'Merriweather Sans', sans-serif;
+    font-size: clamp(40px, 5.5vw, 72px);
+    font-weight: 300;
+    color: var(--white);
+    line-height: 1.1;
+    letter-spacing: -0.01em;
+    margin-bottom: 8px;
+  }
+
+  .hero-title em {
+    font-style: italic;
+    color: var(--gold-light);
+  }
+
+  .hero-subtitle {
+    font-family: 'Merriweather Sans', sans-serif;
+    font-size: clamp(16px, 2vw, 22px);
+    font-weight: 300;
+    font-style: italic;
+    color: var(--linen);
+    margin-top: 16px;
+    max-width: 600px;
+    line-height: 1.4;
+  }
+
+  .hero-metrics {
+    display: flex;
+    gap: 48px;
+    position: relative;
+    z-index: 2;
+    border-top: 1px solid rgba(212,200,184,0.15);
+    padding-top: 32px;
+    flex-wrap: wrap;
+  }
+
+  .hero-metric { }
+
+  .hero-metric-value {
+    font-family: 'Merriweather Sans', sans-serif;
+    font-size: 42px;
+    font-weight: 400;
+    color: var(--gold-light);
+    line-height: 1;
+  }
+
+  .hero-metric-label {
+    font-size: 11px;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: rgba(212,200,184,0.5);
+    margin-top: 4px;
+  }
+
+  .hero-metric-sub {
+    font-size: 10px;
+    color: rgba(184,148,63,0.6);
+    margin-top: 2px;
+    letter-spacing: 0.05em;
+  }
+
+  /* SECTIONS */
+  .section {
+    padding: 80px 60px;
+    max-width: 1100px;
+    margin: 0 auto;
+  }
+
+  .section-number {
+    font-family: 'Merriweather Sans', sans-serif;
+    font-size: 13px;
+    font-style: italic;
+    color: var(--gold);
+    letter-spacing: 0.1em;
+    margin-bottom: 12px;
+    display: block;
+  }
+
+  .section-title {
+    font-family: 'Merriweather Sans', sans-serif;
+    font-size: clamp(36px, 5vw, 56px);
+    font-weight: 300;
+    line-height: 1.1;
+    color: var(--ink);
+    margin-bottom: 40px;
+  }
+
+  .section-title em {
+    font-style: italic;
+    color: var(--gold);
+  }
+
+  .body-text {
+    font-size: 16px;
+    line-height: 1.8;
+    color: var(--charcoal);
+    max-width: 680px;
+  }
+
+  .body-text + .body-text { margin-top: 20px; }
+
+  /* DARK SECTION */
+  .section-dark {
+    background: var(--ink);
+    padding: 80px 60px;
+  }
+
+  .section-dark-inner {
+    max-width: 1100px;
+    margin: 0 auto;
+  }
+
+  .section-dark .section-number { color: var(--gold); }
+  .section-dark .section-title { color: var(--white); }
+  .section-dark .section-title em { color: var(--gold-light); }
+  .section-dark .body-text { color: var(--linen); }
+
+  /* BRAND BOX */
+  .brand-box {
+    background: var(--white);
+    border: 1px solid var(--linen);
+    border-left: 4px solid var(--gold);
+    padding: 40px 48px;
+    margin-top: 48px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 40px;
+  }
+
+  .brand-box-stat { }
+
+  .brand-box-stat-value {
+    font-family: 'Merriweather Sans', sans-serif;
+    font-size: 52px;
+    font-weight: 400;
+    color: var(--ink);
+    line-height: 1;
+  }
+
+  .brand-box-stat-label {
+    font-size: 12px;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-top: 6px;
+  }
+
+  .brand-box-desc {
+    font-size: 15px;
+    line-height: 1.7;
+    color: var(--charcoal);
+    grid-column: 1 / -1;
+    border-top: 1px solid var(--linen);
+    padding-top: 28px;
+  }
+
+  /* PROBLEM — bullet-point style */
+  .problem-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1px;
+    background: var(--linen);
+    margin-top: 56px;
+  }
+
+  .problem-card {
+    background: var(--cream);
+    padding: 36px 32px;
+  }
+
+  .problem-icon {
+    font-size: 24px;
+    margin-bottom: 14px;
+    display: block;
+  }
+
+  .problem-card-title {
+    font-family: 'Merriweather Sans', sans-serif;
+    font-size: 20px;
+    font-weight: 600;
+    color: var(--ink);
+    margin-bottom: 14px;
+    line-height: 1.2;
+  }
+
+  .problem-bullets {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  .problem-bullets li {
+    font-size: 13.5px;
+    line-height: 1.55;
+    color: var(--charcoal);
+    padding-left: 14px;
+    position: relative;
+  }
+
+  .problem-bullets li::before {
+    content: '–';
+    position: absolute;
+    left: 0;
+    color: var(--gold);
+    font-weight: 400;
+  }
+
+  /* SOLUTION */
+  .solution-steps {
+    margin-top: 48px;
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+  }
+
+  .solution-step {
+    display: grid;
+    grid-template-columns: 80px 1fr;
+    gap: 32px;
+    padding: 32px 0;
+    border-bottom: 1px solid rgba(212,200,184,0.3);
+    align-items: start;
+  }
+
+  .step-num {
+    font-family: 'Merriweather Sans', sans-serif;
+    font-size: 64px;
+    font-weight: 300;
+    color: rgba(184,148,63,0.25);
+    line-height: 1;
+    text-align: right;
+  }
+
+  .step-content { }
+
+  .step-title {
+    font-family: 'Merriweather Sans', sans-serif;
+    font-size: 24px;
+    font-weight: 600;
+    color: var(--white);
+    margin-bottom: 10px;
+  }
+
+  .step-body {
+    font-size: 14px;
+    line-height: 1.7;
+    color: var(--linen);
+  }
+
+  .step-tag {
+    display: inline-block;
+    font-size: 10px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--gold);
+    border: 1px solid rgba(184,148,63,0.3);
+    padding: 3px 10px;
+    border-radius: 2px;
+    margin-bottom: 12px;
+  }
+
+  /* CONTENT ANGLES */
+  .angles-wrap {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 24px;
+    margin-top: 48px;
+  }
+
+  .angle-card {
+    border: 1px solid var(--linen);
+    padding: 28px 32px;
+    background: var(--white);
+    position: relative;
+    overflow: hidden;
+  }
+
+  .angle-card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 3px;
+    background: linear-gradient(to right, var(--gold), var(--gold-light));
+  }
+
+  .angle-num {
+    font-family: 'Merriweather Sans', sans-serif;
+    font-size: 48px;
+    font-weight: 300;
+    color: var(--cream);
+    position: absolute;
+    top: 16px;
+    right: 20px;
+    line-height: 1;
+  }
+
+  .angle-label {
+    font-size: 10px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 10px;
+  }
+
+  .angle-title {
+    font-family: 'Merriweather Sans', sans-serif;
+    font-size: 20px;
+    font-weight: 600;
+    color: var(--ink);
+    margin-bottom: 8px;
+    line-height: 1.2;
+    max-width: 80%;
+  }
+
+  .angle-body {
+    font-size: 13px;
+    line-height: 1.6;
+    color: var(--charcoal);
+  }
+
+  /* RESULTS TABLE */
+  .results-section {
+    background: var(--cream);
+    padding: 80px 60px;
+  }
+
+  .results-inner { max-width: 1100px; margin: 0 auto; }
+
+  .results-headline {
+    display: flex;
+    align-items: baseline;
+    gap: 24px;
+    margin-bottom: 48px;
+    flex-wrap: wrap;
+  }
+
+  .roas-big {
+    font-family: 'Merriweather Sans', sans-serif;
+    font-size: 100px;
+    font-weight: 300;
+    color: var(--ink);
+    line-height: 1;
+  }
+
+  .roas-label {
+    font-family: 'Merriweather Sans', sans-serif;
+    font-size: 24px;
+    font-style: italic;
+    color: var(--gold);
+  }
+
+  /* FUNNEL */
+  .funnel-wrap {
+    margin-bottom: 48px;
+  }
+
+  .funnel-label-row {
+    font-size: 11px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 20px;
+  }
+
+  .funnel-stages {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0;
+    width: 100%;
+  }
+
+  .funnel-stage {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 18px 40px;
+    background: var(--ink);
+    color: var(--white);
+    width: 100%;
+    transition: background 0.2s;
+  }
+
+  .funnel-stage:nth-child(1) { width: 100%; }
+  .funnel-stage:nth-child(2) { width: 72%; margin-top: 2px; }
+  .funnel-stage:nth-child(3) { width: 48%; margin-top: 2px; }
+
+  .funnel-stage-label {
+    font-size: 10px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: rgba(212,200,184,0.55);
+  }
+
+  .funnel-stage-value {
+    font-family: 'Merriweather Sans', sans-serif;
+    font-size: 32px;
+    font-weight: 300;
+    color: var(--gold-light);
+    line-height: 1;
+  }
+
+  .funnel-stage-pct {
+    font-size: 12px;
+    letter-spacing: 0.1em;
+    color: rgba(212,200,184,0.5);
+    text-align: right;
+    min-width: 80px;
+  }
+
+  .funnel-stage-pct strong {
+    display: block;
+    font-family: 'Merriweather Sans', sans-serif;
+    font-size: 22px;
+    font-weight: 400;
+    color: var(--gold);
+    line-height: 1;
+  }
+
+  .funnel-arrow {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    padding: 6px 0;
+    font-size: 11px;
+    letter-spacing: 0.1em;
+    color: var(--gold);
+  }
+
+  .funnel-arrow-line {
+    flex: 1;
+    height: 1px;
+    background: rgba(184,148,63,0.3);
+  }
+
+  /* CREATOR TABLE */
+  .creator-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 14px;
+    background: var(--white);
+  }
+
+  .creator-table thead tr {
+    background: var(--ink);
+    color: var(--gold-light);
+  }
+
+  .creator-table th {
+    padding: 14px 18px;
+    text-align: left;
+    font-family: 'Merriweather Sans', sans-serif;
+    font-weight: 400;
+    font-size: 10px;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+  }
+
+  .creator-table td {
+    padding: 14px 18px;
+    border-bottom: 1px solid var(--linen);
+    color: var(--charcoal);
+    vertical-align: middle;
+  }
+
+  .creator-table tbody tr:hover { background: var(--cream); }
+
+  .creator-table .roas-cell {
+    font-family: 'Merriweather Sans', sans-serif;
+    font-size: 22px;
+    font-weight: 600;
+    color: var(--sage);
+  }
+
+  /* CREATOR PROFILE CELL */
+  .creator-cell {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+
+  .creator-avatar {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 1.5px solid var(--linen);
+    flex-shrink: 0;
+    background: var(--cream);
+  }
+
+  .creator-avatar-fallback {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background: var(--cream);
+    border: 1.5px solid var(--linen);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Merriweather Sans', sans-serif;
+    font-size: 16px;
+    font-weight: 600;
+    color: var(--gold);
+    flex-shrink: 0;
+  }
+
+  .creator-name-link {
+    font-family: 'Merriweather Sans', sans-serif;
+    font-size: 18px;
+    font-weight: 600;
+    color: var(--ink);
+    text-decoration: none;
+    border-bottom: 1px solid transparent;
+    transition: border-color 0.2s, color 0.2s;
+  }
+
+  .creator-name-link:hover {
+    color: var(--gold);
+    border-bottom-color: var(--gold);
+  }
+
+  .total-row td {
+    background: var(--ink) !important;
+    color: var(--gold-light) !important;
+    font-weight: 500;
+    border-bottom: none;
+  }
+
+  .total-row .creator-name-link { color: var(--gold-light) !important; }
+  .total-row .creator-name-link:hover { color: var(--gold-light) !important; border-bottom-color: transparent !important; }
+  .total-row .roas-cell { color: var(--gold-light) !important; }
+  .total-row .creator-cell { gap: 12px; }
+
+  /* KPI STRIP */
+  .kpi-strip {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1px;
+    background: var(--linen);
+    margin-top: 48px;
+  }
+
+  .kpi-card {
+    background: var(--ink);
+    padding: 32px 28px;
+    text-align: center;
+  }
+
+  .kpi-value {
+    font-family: 'Merriweather Sans', sans-serif;
+    font-size: 46px;
+    font-weight: 300;
+    color: var(--gold-light);
+    line-height: 1;
+  }
+
+  .kpi-label {
+    font-size: 10px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: rgba(212,200,184,0.55);
+    margin-top: 8px;
+  }
+
+  /* FOOTER */
+  footer {
+    background: var(--ink);
+    padding: 48px 60px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border-top: 1px solid rgba(184,148,63,0.3);
+  }
+
+  .footer-brand {
+    font-family: 'Merriweather Sans', sans-serif;
+    font-size: 22px;
+    font-weight: 300;
+    color: var(--white);
+  }
+
+  .footer-brand span { color: var(--gold); }
+
+  .footer-note {
+    font-size: 11px;
+    letter-spacing: 0.12em;
+    color: rgba(212,200,184,0.4);
+    text-transform: uppercase;
+  }
+
+  /* SEPARATOR */
+  .sep {
+    width: 80px;
+    height: 1px;
+    background: linear-gradient(to right, var(--gold), transparent);
+    margin: 32px 0;
+  }
+
+  /* BLOCKQUOTE */
+  .pull-quote {
+    border-left: 3px solid var(--gold);
+    padding: 20px 32px;
+    margin: 40px 0;
+    background: rgba(184,148,63,0.06);
+  }
+
+  .pull-quote p {
+    font-family: 'Merriweather Sans', sans-serif;
+    font-size: 22px;
+    font-style: italic;
+    font-weight: 300;
+    color: var(--ink);
+    line-height: 1.5;
+  }
+
+  @media (max-width: 768px) {
+    .hero, .section, .section-dark, .results-section { padding: 48px 24px; }
+    .hero-metrics { gap: 28px; }
+    .problem-grid { grid-template-columns: 1fr; }
+    .brand-box { grid-template-columns: 1fr; }
+    .angles-wrap { grid-template-columns: 1fr; }
+    .kpi-strip { grid-template-columns: repeat(2, 1fr); }
+    footer { flex-direction: column; gap: 16px; text-align: center; }
+    .creator-table { font-size: 12px; }
+    .creator-table th, .creator-table td { padding: 10px 12px; }
+    .funnel-stage:nth-child(2) { width: 85%; }
+    .funnel-stage:nth-child(3) { width: 65%; }
+  }
+</style>
+</head>
+<body>
+
+<!-- ─── HERO ─────────────────────────────────────────── -->
+<section class="hero">
+  <div class="hero-tag">
+    <div class="galvor-badge">Galvor AI</div>
+    <div class="divider-line"></div>
+    <div class="case-label">Case Study · 2026</div>
+  </div>
+
+  <!-- MaisonX Logo -->
+  <div class="hero-logo-block">
+    <div class="hero-logo-left">
+      <div class="maison-wordmark">Maison<em>X</em></div>
+      <div class="hero-logo-tagline">European Linen · Millennial Luxury · India-First D2C</div>
+    </div>
+
+    <!-- Right: MaisonX circular mark + Galvor logo together -->
+    <div style="display:flex;flex-direction:column;align-items:center;gap:10px;">
+      <!-- Circular M mark -->
+      <svg class="maison-logo-mark" viewBox="0 0 120 120" xmlns="http://www.w3.org/2000/svg">
+        <circle cx="60" cy="60" r="60" fill="#f5ebe4"/>
+        <g fill="none" stroke="#1a1510" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M 44,26 L 37,74 C 36.5,80 39,85 44,84.5 C 49,84 51,78 47,73 C 44,69 40,70 38.5,74"/>
+          <path d="M 52,78 L 64,26 L 76,78"/>
+        </g>
+      </svg>
+      <!-- Galvor logo small, below M mark -->
+      <div style="display:flex;align-items:center;gap:6px;opacity:0.65;">
+        <img src="Galvor Logo (1).png" alt="Galvor AI" style="width:18px;height:18px;object-fit:contain;filter:brightness(0) invert(1);">
+        <span style="font-size:9px;letter-spacing:0.2em;text-transform:uppercase;color:rgba(212,200,184,0.7);font-family:'Merriweather Sans',sans-serif;">Galvor AI</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="hero-center">
+    <div class="hero-eyebrow">Influencer & UGC Performance Marketing</div>
+    <h1 class="hero-title">From <em>20 creators</em> discovered<br>to 4 that drove real returns</h1>
+    <p class="hero-subtitle">Niche creator discovery for UGC & Meta Partnership Ads — European linen, millennial luxury, half the price.</p>
+  </div>
+
+  <div class="hero-metrics">
+    <div class="hero-metric">
+      <div class="hero-metric-value">4.09×</div>
+      <div class="hero-metric-label">Blended ROAS</div>
+    </div>
+    <div class="hero-metric">
+      <div class="hero-metric-value">₹7.3L</div>
+      <div class="hero-metric-label">Revenue Generated</div>
+    </div>
+    <div class="hero-metric">
+      <div class="hero-metric-value">209</div>
+      <div class="hero-metric-label">Purchases Driven</div>
+    </div>
+    <div class="hero-metric">
+      <div class="hero-metric-value">20 → 4</div>
+      <div class="hero-metric-label">Creators Discovered → Ad-Ready</div>
+      <div class="hero-metric-sub">AI-vetted shortlist</div>
+    </div>
+    <div class="hero-metric">
+      <div class="hero-metric-value">38 days</div>
+      <div class="hero-metric-label">Campaign Window</div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ─── WHO IS MAISONX ─────────────────────────────── -->
+<div class="section">
+  <span class="section-number">01 / Brand</span>
+  <h2 class="section-title">Who is <em>MaisonX?</em></h2>
+
+  <p class="body-text">MaisonX is a direct-to-consumer fashion label redefining accessible luxury for the Indian millennial woman. Built on the premise that premium European linen — naturally breathable, sustainably produced, and effortlessly elegant — should not carry a luxury-brand tax, MaisonX offers quality that competes with international labels at half the price.</p>
+
+  <p class="body-text" style="margin-top:20px">Their target customer is urban, 25–38, high disposable income, brand-aware but value-intelligent. She follows fashion closely, spends significantly on clothing, and trusts creator recommendations over billboard advertising.</p>
+
+  <div class="brand-box">
+    <div class="brand-box-stat">
+      <div class="brand-box-stat-value">50%</div>
+      <div class="brand-box-stat-label">Below comparable European linen labels</div>
+    </div>
+    <div class="brand-box-stat">
+      <div class="brand-box-stat-value">D2C</div>
+      <div class="brand-box-stat-label">Direct-to-consumer, India-first</div>
+    </div>
+    <div class="brand-box-desc">
+      <strong>Category:</strong> Premium fashion &amp; lifestyle · <strong>Vertical:</strong> D2C / Beauty &amp; Fashion · <strong>Primary channel:</strong> Meta (Instagram &amp; Facebook) · <strong>Campaign type:</strong> UGC + Partnership Ads
+    </div>
+  </div>
+</div>
+
+
+<!-- ─── PROBLEM ─────────────────────────────────────── -->
+<div style="background:var(--cream); padding:0">
+  <div class="section">
+    <span class="section-number">02 / Challenge</span>
+    <h2 class="section-title">The <em>Problem</em></h2>
+    <p class="body-text">A premium D2C paradox: aspirational brand appeal vs. performance ROAS — compounded by three hard-to-solve challenges.</p>
+
+    <div class="problem-grid">
+      <div class="problem-card">
+        <span class="problem-icon">👗</span>
+        <div class="problem-card-title">Finding the right creator at the right niche</div>
+        <ul class="problem-bullets">
+          <li>Needed creators who genuinely embody elevated millennial taste</li>
+          <li>Follower count is misleading — audience composition matters more</li>
+          <li>High purchase-intent, fashion-forward audiences are rare at this niche</li>
+          <li>Mass-market fashion influencers dilute brand positioning</li>
+        </ul>
+      </div>
+      <div class="problem-card">
+        <span class="problem-icon">💬</span>
+        <div class="problem-card-title">Communicating value without cheapening the brand</div>
+        <ul class="problem-bullets">
+          <li>"European linen at half the price" is a delicate message</li>
+          <li>Say it wrong → undermines luxury positioning</li>
+          <li>Say it too softly → value proposition is lost</li>
+          <li>Content sequencing had to be precise: quality-first, price-last</li>
+        </ul>
+      </div>
+      <div class="problem-card">
+        <span class="problem-icon">🚫</span>
+        <div class="problem-card-title">Eliminating brand contamination risk</div>
+        <ul class="problem-bullets">
+          <li>Creators who promoted mass-market or discount fashion pollute perception</li>
+          <li>Standard databases provide no signal on past endorsement quality</li>
+          <li>Even a single low-quality collab can taint audience trust</li>
+          <li>Manual vetting at scale is time-prohibitive without AI</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<!-- ─── SOLUTION ─────────────────────────────────────── -->
+<section class="section-dark">
+  <div class="section-dark-inner">
+    <span class="section-number">03 / Solution</span>
+    <h2 class="section-title">The Galvor <em>Approach</em></h2>
+    <p class="body-text">Galvor deployed its AI-assisted creator intelligence stack to move from a universe of 20 shortlisted creators down to 4 elite picks — each individually vetted for audience quality, content tone, and brand endorsement history. Only those 4 were activated for ad spend.</p>
+
+    <div class="solution-steps">
+      <div class="solution-step">
+        <div class="step-num">1</div>
+        <div class="step-content">
+          <div class="step-tag">Discovery</div>
+          <div class="step-title">AI-Powered Niche Creator Discovery</div>
+          <div class="step-body">Galvor's discovery engine scanned thousands of fashion, lifestyle, and premium-living creators across Instagram, producing a longlist of 20 qualified candidates. Filtering criteria: audience demographics (female, 24–38, urban metro, mid-to-high income), engagement quality, and content resonance with fashion-forward themes. Follower count was deprioritised throughout.</div>
+        </div>
+      </div>
+
+      <div class="solution-step">
+        <div class="step-num">2</div>
+        <div class="step-content">
+          <div class="step-tag">Vetting</div>
+          <div class="step-title">AI-Based Content Quality &amp; Brand Endorsement Vetting</div>
+          <div class="step-body">Every shortlisted creator was put through Galvor's content quality audit: visual aesthetic consistency, caption authenticity, and — critically — historical brand endorsement analysis. Creators with past collaborations for massey, discount, or off-brand fashion labels were eliminated. Of the 20 shortlisted, only 4 passed the full vetting bar. Not a single rupee was committed before this stage cleared.</div>
+        </div>
+      </div>
+
+      <div class="solution-step">
+        <div class="step-num">3</div>
+        <div class="step-content">
+          <div class="step-tag">Content Strategy</div>
+          <div class="step-title">Content Angle Planning for Value + Luxury</div>
+          <div class="step-body">Galvor co-developed a set of content angles with each creator that positioned European linen as aspirational — speaking to texture, origin, and sustainability — before arriving at the price revelation. This sequencing ensured viewers were already sold on quality before the value signal landed, preventing brand dilution.</div>
+        </div>
+      </div>
+
+      <div class="solution-step">
+        <div class="step-num">4</div>
+        <div class="step-content">
+          <div class="step-tag">Activation</div>
+          <div class="step-title">UGC + Meta Partnership Ad Deployment</div>
+          <div class="step-body">The 4 vetted creators ran content across two formats: organic Partnership Ads (whitelisted through creator handles) for upper-funnel reach and trust, and UGC-format ads (product-in-use, unboxing, wear-test) for mid-to-lower funnel conversion. Both formats ran in parallel across Meta — Instagram &amp; Facebook — with creative performance tracked at the creator level in real time.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ─── CONTENT ANGLES ─────────────────────────────── -->
+<div class="section">
+  <span class="section-number">04 / Content Strategy</span>
+  <h2 class="section-title">Content <em>Angles</em></h2>
+  <p class="body-text">Four narrative angles were planned and deployed across the creator set, each engineered to communicate quality-first before revealing the value proposition — protecting brand perception while driving conversion.</p>
+
+  <div class="angles-wrap">
+    <div class="angle-card">
+      <div class="angle-num">01</div>
+      <div class="angle-label">Origin Story</div>
+      <div class="angle-title">The European Linen Journey</div>
+      <div class="angle-body">Creator unboxing or styling that leads with fabric origin — hand-touching the linen, noting the drape and breathability, placing it in the context of European textile heritage. The price revelation comes last, as a surprise. <em>"I thought this was ₹8,000... it was ₹3,200."</em></div>
+    </div>
+
+    <div class="angle-card">
+      <div class="angle-num">02</div>
+      <div class="angle-label">Lifestyle Fit</div>
+      <div class="angle-title">What I Wear to Work / Brunch / Travel</div>
+      <div class="angle-body">Day-in-the-life formats where MaisonX pieces appear as the creator's natural choice — not as a paid-feeling endorsement. Styled into real situations. The brand is secondary to the creator's aesthetic; the purchase link is incidental but present.</div>
+    </div>
+
+    <div class="angle-card">
+      <div class="angle-num">03</div>
+      <div class="angle-label">Value Intelligence</div>
+      <div class="angle-title">Luxury-Feeling Wardrobe at Half the Investment</div>
+      <div class="angle-body">Directly addressing the smart millennial consumer: "I've spent ₹12,000 on linen shirts that look identical to this." Positions MaisonX's buyer as discerning, not budget-constrained — reframing value as intelligence, not compromise.</div>
+    </div>
+
+    <div class="angle-card">
+      <div class="angle-num">04</div>
+      <div class="angle-label">Sustainability Lens</div>
+      <div class="angle-title">Why Linen is the Only Fabric Worth Buying Right Now</div>
+      <div class="angle-body">Educational content on linen's environmental credentials — water use, biodegradability, durability — woven into a creator's broader sustainable fashion narrative. MaisonX benefits from halo positioning as a conscious choice, not just a stylish one.</div>
+    </div>
+  </div>
+</div>
+
+
+<!-- ─── RESULTS ─────────────────────────────────────── -->
+<section class="results-section">
+  <div class="results-inner">
+    <span class="section-number" style="color:var(--gold)">05 / Outcomes</span>
+
+    <div class="results-headline">
+      <div class="roas-big">4.09<span style="font-size:48px;color:var(--gold)">×</span></div>
+      <div>
+        <div class="roas-label">Blended ROAS</div>
+        <p style="font-size:14px;color:var(--charcoal);margin-top:6px;max-width:420px">Across 4 creators, 38 days, ₹1,98,914.04 in ad spend — delivering ₹7,30,070.75 in attributed revenue on Meta.</p>
+      </div>
+    </div>
+
+    <!-- FUNNEL VISUALIZATION -->
+    <div class="funnel-wrap">
+      <div class="funnel-label-row">Campaign Funnel · Impressions → Clicks → Purchases</div>
+      <div class="funnel-stages">
+
+        <div class="funnel-stage" style="width:100%">
+          <div>
+            <div class="funnel-stage-label">Impressions</div>
+            <div class="funnel-stage-value">3,76,286</div>
+          </div>
+          <div class="funnel-stage-pct">
+            <strong>100%</strong>
+            reached
+          </div>
+        </div>
+
+        <div style="width:100%;display:flex;align-items:center;padding:6px 0 4px;">
+          <div style="flex:1;height:1px;background:rgba(184,148,63,0.25)"></div>
+          <div style="font-size:11px;color:var(--gold);padding:0 14px;white-space:nowrap;letter-spacing:0.08em;">3.34% click-through</div>
+          <div style="flex:1;height:1px;background:rgba(184,148,63,0.25)"></div>
+        </div>
+
+        <div class="funnel-stage" style="width:72%;margin:0 auto 0;">
+          <div>
+            <div class="funnel-stage-label">Clicks</div>
+            <div class="funnel-stage-value">12,560</div>
+          </div>
+          <div class="funnel-stage-pct">
+            <strong>3.34%</strong>
+            of impressions
+          </div>
+        </div>
+
+        <div style="width:72%;margin:0 auto;display:flex;align-items:center;padding:6px 0 4px;">
+          <div style="flex:1;height:1px;background:rgba(184,148,63,0.25)"></div>
+          <div style="font-size:11px;color:var(--gold);padding:0 14px;white-space:nowrap;letter-spacing:0.08em;">1.66% purchase rate</div>
+          <div style="flex:1;height:1px;background:rgba(184,148,63,0.25)"></div>
+        </div>
+
+        <div class="funnel-stage" style="width:44%;margin:0 auto;">
+          <div>
+            <div class="funnel-stage-label">Purchases</div>
+            <div class="funnel-stage-value">209</div>
+          </div>
+          <div class="funnel-stage-pct">
+            <strong>1.66%</strong>
+            of clicks
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- CREATOR TABLE (Impressions / Clicks / Purchases removed) -->
+    <table class="creator-table">
+      <thead>
+        <tr>
+          <th>Creator</th>
+          <th>Spend (₹)</th>
+          <th>Revenue (₹)</th>
+          <th>ROAS</th>
+          <th>Cost / Purchase (₹)</th>
+          <th>Thumbstop %</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><a class="creator-name-link" href="https://www.instagram.com/sahalways/" target="_blank" rel="noopener">Sahalways</a></td>
+          <td>1,58,758</td>
+          <td>5,64,642</td>
+          <td class="roas-cell">3.56×</td>
+          <td>992</td>
+          <td>30.0%</td>
+        </tr>
+        <tr>
+          <td><a class="creator-name-link" href="https://www.instagram.com/maanshekhawatofficial/" target="_blank" rel="noopener">Maan</a></td>
+          <td>16,390</td>
+          <td>77,644</td>
+          <td class="roas-cell">4.74×</td>
+          <td>683</td>
+          <td>22.1%</td>
+        </tr>
+        <tr>
+          <td><a class="creator-name-link" href="https://www.instagram.com/aniket_sequeria" target="_blank" rel="noopener">Aniket</a></td>
+          <td>6,219</td>
+          <td>20,087</td>
+          <td class="roas-cell">3.23×</td>
+          <td>1,036</td>
+          <td>35.2%</td>
+        </tr>
+        <tr>
+          <td><a class="creator-name-link" href="https://www.instagram.com/jayeshjummani/" target="_blank" rel="noopener">Jayesh Jummani</a></td>
+          <td>17,548</td>
+          <td>67,698</td>
+          <td class="roas-cell" style="color:var(--sage)">3.86×</td>
+          <td>924</td>
+          <td>18.8%</td>
+        </tr>
+        <tr class="total-row">
+          <td><span style="font-family:'Cormorant Garamond',serif;font-size:18px;font-weight:600;color:var(--gold-light)">Total</span></td>
+          <td>1,98,914</td>
+          <td>7,30,071</td>
+          <td class="roas-cell">4.09×</td>
+          <td>952</td>
+          <td>28.3% avg</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <div class="kpi-strip">
+      <div class="kpi-card">
+        <div class="kpi-value">11,714</div>
+        <div class="kpi-label">Total Landing Page Views</div>
+      </div>
+      <div class="kpi-card">
+        <div class="kpi-value">1,137</div>
+        <div class="kpi-label">Adds to Cart</div>
+      </div>
+      <div class="kpi-card">
+        <div class="kpi-value">416</div>
+        <div class="kpi-label">Checkouts Initiated</div>
+      </div>
+      <div class="kpi-card">
+        <div class="kpi-value">91</div>
+        <div class="kpi-label">Instagram Follows Gained</div>
+      </div>
+    </div>
+
+    <div class="pull-quote" style="margin-top:48px; border-color:var(--gold); background:rgba(184,148,63,0.05)">
+      <p>Maan delivered the highest ROAS at 4.74× on the smallest budget — validating Galvor's thesis that niche, audience-matched creators consistently outperform volume plays in premium D2C.</p>
+    </div>
+  </div>
+</section>
+
+
+<!-- ─── FOOTER ─────────────────────────────────────── -->
+<footer>
+  <div class="footer-brand">Galvor <span>AI</span></div>
+  <div class="footer-note">Influence that pays back · galvor.ai</div>
+</footer>
+
+</body>
+</html>

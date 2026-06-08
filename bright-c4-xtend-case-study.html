@@ -1,0 +1,1133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>C4 × Xtend — Bright Performance Nutrition × Galvor AI — Case Study</title>
+<link href="https://fonts.googleapis.com/css2?family=Merriweather+Sans:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --bg: #070c14;
+    --surface: #0f1824;
+    --card: #141d2e;
+    --accent: #0ea5e9;
+    --orange: #f97316;
+    --green: #22d3ee;
+    --gold: #fbbf24;
+    --text: #e2e8f0;
+    --muted: #64748b;
+    --linen: #334155;
+    --white: #f8fafc;
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'Merriweather Sans', sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    font-weight: 300;
+    line-height: 1.7;
+  }
+
+  /* ─── HERO ─── */
+  .hero {
+    background: var(--bg);
+    display: grid;
+    grid-template-rows: auto auto auto;
+    position: relative;
+    overflow: hidden;
+    padding: 60px;
+  }
+
+  .hero::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background:
+      radial-gradient(ellipse 70% 55% at 75% 35%, rgba(14,165,233,0.10) 0%, transparent 60%),
+      radial-gradient(ellipse 45% 70% at 15% 80%, rgba(249,115,22,0.08) 0%, transparent 50%),
+      radial-gradient(ellipse 50% 40% at 50% 100%, rgba(34,211,238,0.05) 0%, transparent 60%);
+    pointer-events: none;
+  }
+
+  .hero-tag {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    position: relative;
+    z-index: 2;
+  }
+
+  .galvor-badge {
+    font-family: 'Merriweather Sans', sans-serif;
+    font-weight: 500;
+    font-size: 11px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--gold);
+    border: 1px solid rgba(251,191,36,0.4);
+    padding: 6px 14px;
+    border-radius: 2px;
+  }
+
+  .divider-line {
+    flex: 1;
+    height: 1px;
+    background: linear-gradient(to right, rgba(251,191,36,0.35), transparent);
+  }
+
+  .case-label {
+    font-family: 'Merriweather Sans', sans-serif;
+    font-weight: 300;
+    font-size: 11px;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: rgba(226,232,240,0.45);
+  }
+
+  .hero-logo-block {
+    position: relative;
+    z-index: 2;
+    padding: 36px 0 28px;
+    border-bottom: 1px solid rgba(14,165,233,0.15);
+    margin-bottom: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 32px;
+  }
+
+  .hero-logo-left { display: flex; flex-direction: column; }
+
+  .brand-wordmark {
+    font-family: 'Merriweather Sans', sans-serif;
+    font-size: clamp(44px, 6.5vw, 88px);
+    font-weight: 600;
+    line-height: 1;
+    letter-spacing: -0.02em;
+  }
+
+  .brand-wordmark .c4-text { color: var(--orange); }
+  .brand-wordmark .sep-x { color: rgba(226,232,240,0.3); font-weight: 300; margin: 0 8px; }
+  .brand-wordmark .xtend-text { color: var(--green); }
+
+  .brand-sub {
+    font-size: 11px;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-top: 10px;
+    font-variant: small-caps;
+  }
+
+  .brand-tagline {
+    font-size: 11px;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: rgba(14,165,233,0.6);
+    margin-top: 6px;
+  }
+
+  .hero-logo-right {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    flex-shrink: 0;
+  }
+
+  .hero-logo-right img {
+    width: 18px;
+    height: 18px;
+    filter: brightness(0) invert(1);
+    opacity: 0.85;
+  }
+
+  .galvor-ai-text {
+    font-family: 'Merriweather Sans', sans-serif;
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: rgba(226,232,240,0.5);
+    font-variant: small-caps;
+  }
+
+  .hero-center {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    position: relative;
+    z-index: 2;
+    padding: 32px 0;
+  }
+
+  .hero-metrics {
+    display: flex;
+    gap: 48px;
+    position: relative;
+    z-index: 2;
+    border-top: 1px solid rgba(14,165,233,0.15);
+    padding-top: 36px;
+    flex-wrap: wrap;
+  }
+
+  .hero-metric-value {
+    font-family: 'Merriweather Sans', sans-serif;
+    font-size: 44px;
+    font-weight: 400;
+    color: var(--accent);
+    line-height: 1;
+  }
+
+  .hero-metric-value.orange { color: var(--orange); }
+  .hero-metric-value.green { color: var(--green); }
+
+  .hero-metric-label {
+    font-size: 11px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-top: 5px;
+  }
+
+  /* ─── SECTION BASE ─── */
+  .section {
+    padding: 80px 60px;
+    max-width: 1100px;
+    margin: 0 auto;
+  }
+
+  .section-number {
+    font-family: 'Merriweather Sans', sans-serif;
+    font-size: 13px;
+    font-style: italic;
+    color: var(--accent);
+    letter-spacing: 0.12em;
+    margin-bottom: 12px;
+    display: block;
+  }
+
+  .section-title {
+    font-family: 'Merriweather Sans', sans-serif;
+    font-size: clamp(34px, 5vw, 54px);
+    font-weight: 300;
+    line-height: 1.1;
+    color: var(--white);
+    margin-bottom: 40px;
+  }
+
+  .section-title em {
+    font-style: italic;
+    color: var(--accent);
+  }
+
+  .body-text {
+    font-size: 16px;
+    line-height: 1.8;
+    color: var(--text);
+    max-width: 680px;
+  }
+
+  .body-text + .body-text { margin-top: 20px; }
+
+  /* ─── LIGHT SECTION ─── */
+  .section-light {
+    background: var(--surface);
+    padding: 80px 60px;
+  }
+
+  .section-light-inner {
+    max-width: 1100px;
+    margin: 0 auto;
+  }
+
+  /* ─── VERY LIGHT (cream-ish) ─── */
+  .section-pale {
+    background: #0b1220;
+    padding: 80px 60px;
+  }
+
+  .section-pale-inner {
+    max-width: 1100px;
+    margin: 0 auto;
+  }
+
+  /* ─── DARK SECTION ─── */
+  .section-dark {
+    background: var(--card);
+    padding: 80px 60px;
+  }
+
+  .section-dark-inner {
+    max-width: 1100px;
+    margin: 0 auto;
+  }
+
+  /* ─── BRAND BOX ─── */
+  .brand-box {
+    background: var(--card);
+    border: 1px solid var(--linen);
+    border-left: 4px solid var(--accent);
+    padding: 40px 48px;
+    margin-top: 48px;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 40px;
+  }
+
+  .brand-box-stat-value {
+    font-family: 'Merriweather Sans', sans-serif;
+    font-size: 42px;
+    font-weight: 400;
+    color: var(--white);
+    line-height: 1;
+  }
+
+  .brand-box-stat-value .c4 { color: var(--orange); }
+  .brand-box-stat-value .xt { color: var(--green); }
+
+  .brand-box-stat-label {
+    font-size: 11px;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-top: 6px;
+  }
+
+  .brand-box-desc {
+    font-size: 15px;
+    line-height: 1.75;
+    color: var(--text);
+    grid-column: 1 / -1;
+    border-top: 1px solid var(--linen);
+    padding-top: 28px;
+    opacity: 0.85;
+  }
+
+  /* ─── CHALLENGE CARDS ─── */
+  .challenge-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1px;
+    background: var(--linen);
+    margin-top: 56px;
+  }
+
+  .challenge-card {
+    background: var(--card);
+    padding: 36px 32px;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .challenge-card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 3px;
+    background: linear-gradient(to right, var(--accent), var(--green));
+  }
+
+  .challenge-card-num {
+    font-family: 'Merriweather Sans', sans-serif;
+    font-size: 52px;
+    font-weight: 300;
+    color: rgba(14,165,233,0.1);
+    position: absolute;
+    top: 12px;
+    right: 18px;
+    line-height: 1;
+  }
+
+  .challenge-card-title {
+    font-family: 'Merriweather Sans', sans-serif;
+    font-size: 18px;
+    font-weight: 600;
+    color: var(--white);
+    margin-bottom: 18px;
+    line-height: 1.25;
+    max-width: 85%;
+  }
+
+  .challenge-bullets {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .challenge-bullets li {
+    font-size: 13.5px;
+    line-height: 1.6;
+    color: var(--text);
+    padding-left: 16px;
+    position: relative;
+    opacity: 0.85;
+  }
+
+  .challenge-bullets li::before {
+    content: '–';
+    position: absolute;
+    left: 0;
+    color: var(--accent);
+    font-weight: 400;
+  }
+
+  /* ─── SOLUTION STEPS ─── */
+  .solution-steps {
+    margin-top: 48px;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .solution-step {
+    display: grid;
+    grid-template-columns: 80px 1fr;
+    gap: 32px;
+    padding: 32px 0;
+    border-bottom: 1px solid rgba(14,165,233,0.12);
+    align-items: start;
+  }
+
+  .step-num {
+    font-family: 'Merriweather Sans', sans-serif;
+    font-size: 64px;
+    font-weight: 300;
+    color: rgba(14,165,233,0.18);
+    line-height: 1;
+    text-align: right;
+  }
+
+  .step-tag {
+    display: inline-block;
+    font-size: 10px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--accent);
+    border: 1px solid rgba(14,165,233,0.3);
+    padding: 3px 10px;
+    border-radius: 2px;
+    margin-bottom: 12px;
+  }
+
+  .step-title {
+    font-family: 'Merriweather Sans', sans-serif;
+    font-size: 22px;
+    font-weight: 600;
+    color: var(--white);
+    margin-bottom: 10px;
+  }
+
+  .step-body {
+    font-size: 14px;
+    line-height: 1.75;
+    color: var(--text);
+    opacity: 0.82;
+    max-width: 640px;
+  }
+
+  /* ─── INSIGHT CARDS ─── */
+  .insight-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+    margin-top: 48px;
+  }
+
+  .insight-card {
+    background: var(--card);
+    border: 1px solid var(--linen);
+    padding: 32px 28px;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .insight-card.best {
+    border-color: var(--green);
+  }
+
+  .insight-card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 3px;
+    background: var(--orange);
+  }
+
+  .insight-card:nth-child(2)::before { background: var(--accent); }
+  .insight-card:nth-child(3)::before { background: var(--green); }
+
+  .insight-icon {
+    font-size: 28px;
+    margin-bottom: 14px;
+    display: block;
+    line-height: 1;
+  }
+
+  .insight-title {
+    font-family: 'Merriweather Sans', sans-serif;
+    font-size: 18px;
+    font-weight: 600;
+    color: var(--white);
+    margin-bottom: 12px;
+    line-height: 1.25;
+  }
+
+  .insight-body {
+    font-size: 13.5px;
+    line-height: 1.65;
+    color: var(--text);
+    opacity: 0.82;
+  }
+
+  .insight-stat {
+    display: inline-block;
+    font-family: 'Merriweather Sans', sans-serif;
+    font-size: 28px;
+    font-weight: 400;
+    color: var(--orange);
+    margin-bottom: 4px;
+    line-height: 1;
+  }
+
+  .insight-card:nth-child(2) .insight-stat { color: var(--accent); }
+  .insight-card:nth-child(3) .insight-stat { color: var(--green); }
+
+  /* ─── RESULTS ─── */
+  .results-section {
+    background: var(--surface);
+    padding: 80px 60px;
+  }
+
+  .results-inner { max-width: 1100px; margin: 0 auto; }
+
+  .results-headline {
+    display: flex;
+    align-items: baseline;
+    gap: 24px;
+    margin-bottom: 48px;
+    flex-wrap: wrap;
+  }
+
+  .cpv-big {
+    font-family: 'Merriweather Sans', sans-serif;
+    font-size: 100px;
+    font-weight: 300;
+    color: var(--white);
+    line-height: 1;
+  }
+
+  .cpv-big span { color: var(--green); }
+
+  .cpv-label {
+    font-family: 'Merriweather Sans', sans-serif;
+    font-size: 22px;
+    font-style: italic;
+    color: var(--accent);
+  }
+
+  /* ─── CREATOR TABLE ─── */
+  .creator-table-wrap {
+    overflow-x: auto;
+    border-radius: 2px;
+  }
+
+  .creator-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 13.5px;
+    background: var(--card);
+    min-width: 900px;
+  }
+
+  .creator-table thead tr {
+    background: var(--surface);
+  }
+
+  .creator-table th {
+    padding: 14px 16px;
+    text-align: left;
+    font-family: 'Merriweather Sans', sans-serif;
+    font-weight: 400;
+    font-size: 10px;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--accent);
+    white-space: nowrap;
+  }
+
+  .creator-table td {
+    padding: 13px 16px;
+    border-bottom: 1px solid var(--linen);
+    color: var(--text);
+    vertical-align: middle;
+  }
+
+  .creator-table tbody tr:nth-child(even) td {
+    background: rgba(15,24,36,0.5);
+  }
+
+  .creator-table tbody tr:hover td { background: rgba(14,165,233,0.05); }
+
+  .creator-table tbody tr.best-row td {
+    background: rgba(34,211,238,0.05) !important;
+  }
+
+  .creator-name-link {
+    font-family: 'Merriweather Sans', sans-serif;
+    font-size: 14px;
+    font-weight: 500;
+    color: var(--accent);
+    text-decoration: none;
+    border-bottom: 1px solid transparent;
+    transition: border-color 0.2s, color 0.2s;
+  }
+
+  .creator-name-link:hover {
+    color: var(--green);
+    border-bottom-color: var(--green);
+  }
+
+  .cpv-good { color: var(--green); font-weight: 600; }
+  .cpv-mid { color: var(--orange); font-weight: 500; }
+  .cpv-best {
+    color: var(--green);
+    font-weight: 700;
+    font-size: 15px;
+  }
+
+  .total-row td {
+    background: var(--bg) !important;
+    color: var(--white) !important;
+    font-weight: 500;
+    border-bottom: none;
+    border-top: 2px solid var(--linen);
+  }
+
+  .total-row .creator-name-link {
+    color: var(--white) !important;
+    border-bottom: none !important;
+    cursor: default;
+    pointer-events: none;
+  }
+
+  .star-badge {
+    display: inline-block;
+    font-size: 9px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--green);
+    border: 1px solid rgba(34,211,238,0.4);
+    padding: 2px 7px;
+    border-radius: 2px;
+    margin-left: 6px;
+    vertical-align: middle;
+  }
+
+  /* ─── KPI STRIP ─── */
+  .kpi-strip {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1px;
+    background: var(--linen);
+    margin-top: 48px;
+  }
+
+  .kpi-card {
+    background: var(--bg);
+    padding: 32px 24px;
+    text-align: center;
+  }
+
+  .kpi-value {
+    font-family: 'Merriweather Sans', sans-serif;
+    font-size: 46px;
+    font-weight: 300;
+    color: var(--accent);
+    line-height: 1;
+  }
+
+  .kpi-label {
+    font-size: 10px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-top: 8px;
+  }
+
+  /* ─── PULL QUOTE ─── */
+  .pull-quote {
+    border-left: 3px solid var(--green);
+    padding: 24px 36px;
+    margin: 48px 0 0;
+    background: rgba(34,211,238,0.04);
+  }
+
+  .pull-quote p {
+    font-family: 'Merriweather Sans', sans-serif;
+    font-size: 20px;
+    font-style: italic;
+    font-weight: 300;
+    color: var(--white);
+    line-height: 1.6;
+    max-width: 860px;
+  }
+
+  /* ─── SEP ─── */
+  .sep {
+    width: 80px;
+    height: 1px;
+    background: linear-gradient(to right, var(--accent), transparent);
+    margin: 32px 0;
+  }
+
+  /* ─── FOOTER ─── */
+  footer {
+    background: var(--bg);
+    padding: 48px 60px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border-top: 1px solid rgba(14,165,233,0.18);
+  }
+
+  .footer-brand {
+    font-family: 'Merriweather Sans', sans-serif;
+    font-size: 22px;
+    font-weight: 300;
+    color: var(--white);
+  }
+
+  .footer-brand span { color: var(--accent); }
+
+  .footer-note {
+    font-size: 11px;
+    letter-spacing: 0.12em;
+    color: var(--muted);
+    text-transform: uppercase;
+  }
+
+  /* ─── RESPONSIVE ─── */
+  @media (max-width: 900px) {
+    .hero, .section, .section-light, .section-dark, .section-pale, .results-section { padding: 48px 28px; }
+    .challenge-grid { grid-template-columns: 1fr; }
+    .brand-box { grid-template-columns: 1fr 1fr; }
+    .insight-grid { grid-template-columns: 1fr; }
+    .kpi-strip { grid-template-columns: repeat(2, 1fr); }
+    footer { flex-direction: column; gap: 16px; text-align: center; }
+    .hero-metrics { gap: 28px; }
+  }
+
+  @media (max-width: 600px) {
+    .hero-metrics { gap: 20px; }
+    .brand-box { grid-template-columns: 1fr; }
+    .cpv-big { font-size: 64px; }
+    .kpi-strip { grid-template-columns: 1fr 1fr; }
+  }
+</style>
+</head>
+<body>
+
+<!-- ─── HERO ──────────────────────────────────────────── -->
+<section class="hero">
+
+  <div class="hero-tag">
+    <div class="galvor-badge">Galvor AI</div>
+    <div class="divider-line"></div>
+    <div class="case-label">Case Study · 2026</div>
+  </div>
+
+  <div class="hero-logo-block">
+    <div class="hero-logo-left">
+      <div class="brand-wordmark">
+        <span class="c4-text">C4</span><span class="sep-x">×</span><span class="xtend-text">Xtend</span>
+      </div>
+      <div class="brand-sub">by Bright Performance Nutrition Pvt Ltd</div>
+      <div class="brand-tagline">Sports Nutrition · Awareness Campaign · Instagram Reels</div>
+    </div>
+    <!-- Right: brand logos on white bg + Galvor -->
+    <div style="display:flex;flex-direction:column;align-items:flex-end;gap:16px;flex-shrink:0;">
+      <div style="display:flex;align-items:center;gap:12px;">
+        <div style="background:#fff;border-radius:8px;padding:10px 18px;display:flex;align-items:center;justify-content:center;">
+          <img src="galvor_images/image25.png" alt="C4 Original" style="height:44px;width:auto;display:block;">
+        </div>
+        <span style="color:rgba(226,232,240,0.3);font-size:22px;font-weight:300;">×</span>
+        <div style="background:#fff;border-radius:8px;padding:10px 18px;display:flex;align-items:center;justify-content:center;">
+          <img src="galvor_images/image17.png" alt="Xtend" style="height:32px;width:auto;display:block;">
+        </div>
+      </div>
+      <div style="display:flex;align-items:center;gap:6px;opacity:0.65;">
+        <img src="Galvor Logo (1).png" alt="Galvor AI" style="width:18px;height:18px;object-fit:contain;filter:brightness(0) invert(1);">
+        <span class="galvor-ai-text">Galvor AI</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="hero-metrics">
+    <div class="hero-metric">
+      <div class="hero-metric-value green">₹0.31</div>
+      <div class="hero-metric-label">Blended CPV</div>
+    </div>
+    <div class="hero-metric">
+      <div class="hero-metric-value orange">2,55,725</div>
+      <div class="hero-metric-label">Total Views</div>
+    </div>
+    <div class="hero-metric">
+      <div class="hero-metric-value">1,84,968</div>
+      <div class="hero-metric-label">Accounts Reached</div>
+    </div>
+    <div class="hero-metric">
+      <div class="hero-metric-value" style="color: var(--gold);">9</div>
+      <div class="hero-metric-label">Creators</div>
+    </div>
+    <div class="hero-metric">
+      <div class="hero-metric-value" style="color: var(--text);">5,808</div>
+      <div class="hero-metric-label">Interactions</div>
+    </div>
+  </div>
+
+</section>
+
+<!-- ─── 01 / BRAND ────────────────────────────────────── -->
+<div style="background: var(--bg);">
+  <div class="section">
+    <span class="section-number">01 /</span>
+    <h2 class="section-title">Brand</h2>
+
+    <p class="body-text">
+      Bright Performance Nutrition Pvt Ltd is the India distributor for two of the most recognised sports nutrition brands in the world — <strong style="color: var(--orange);">C4</strong> pre-workout and <strong style="color: var(--green);">Xtend</strong> recovery. This campaign was the brand's push into performance-aware Indian gym culture via Instagram Reels.
+    </p>
+
+    <p class="body-text" style="margin-top: 20px;">
+      The objective was pure awareness at the lowest possible Cost Per View — getting the C4 and Xtend names in front of male gym-goers, athletes, and serious fitness enthusiasts (18–35, urban India) who had the intent and the income to buy imported supplements.
+    </p>
+
+    <div class="brand-box">
+      <div class="brand-box-stat">
+        <div style="background:#fff;border-radius:6px;padding:8px 14px;display:inline-flex;align-items:center;margin-bottom:8px;">
+          <img src="galvor_images/image25.png" alt="C4 Original" style="height:40px;width:auto;display:block;">
+        </div>
+        <div class="brand-box-stat-label">Pre-Workout</div>
+      </div>
+      <div class="brand-box-stat">
+        <div style="background:#fff;border-radius:6px;padding:8px 14px;display:inline-flex;align-items:center;margin-bottom:8px;">
+          <img src="galvor_images/image17.png" alt="Xtend" style="height:30px;width:auto;display:block;">
+        </div>
+        <div class="brand-box-stat-label">BCAA &amp; Recovery</div>
+      </div>
+      <div class="brand-box-stat">
+        <div class="brand-box-stat-value" style="font-size: 28px; color: var(--accent);">Instagram Reels</div>
+        <div class="brand-box-stat-label">Campaign Channel</div>
+      </div>
+      <div class="brand-box-desc">
+        <strong style="color: var(--orange);">C4</strong> — India's #1 imported pre-workout. Internationally recognised for explosive energy, mental focus, and endurance. Entering the Indian gym market against established domestic brands with premium credentials and a global reputation.
+        <br><br>
+        <strong style="color: var(--green);">Xtend</strong> — Premium BCAA and intra/post-workout recovery formula trusted by competitive athletes globally. Formulated for serious trainers who understand the science behind recovery, not just the aesthetics.
+        <br><br>
+        <strong>Target:</strong> Male gym-goers and serious athletes, 18–35, urban India. Audiences who train for performance, not just appearance — and who influence supplement buying decisions in their peer circles.
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ─── 02 / CHALLENGE ────────────────────────────────── -->
+<div class="section-light">
+  <div class="section-light-inner">
+    <span class="section-number">02 /</span>
+    <h2 class="section-title">Challenge</h2>
+
+    <div class="challenge-grid">
+
+      <div class="challenge-card">
+        <div class="challenge-card-num">01</div>
+        <h3 class="challenge-card-title">Building awareness in a crowded fitness space</h3>
+        <ul class="challenge-bullets">
+          <li>C4 and Xtend are premium international imports competing with established Indian brands that have deep retail and digital presence</li>
+          <li>Reaching serious gym audiences — not casual wellness browsers — is expensive and hard to target via paid media alone</li>
+          <li>A CPV objective meant every rupee had to generate real, measured views — not just impressions or vague reach numbers</li>
+        </ul>
+      </div>
+
+      <div class="challenge-card">
+        <div class="challenge-card-num">02</div>
+        <h3 class="challenge-card-title">Finding genuine fitness creators, not just gym aesthetics</h3>
+        <ul class="challenge-bullets">
+          <li>Most fitness creators on Instagram skew toward aesthetics, lifestyle, and transformation content — not performance supplementation</li>
+          <li>Needed creators whose audiences actually train, lift, and compete — audiences that would trust a supplement recommendation</li>
+          <li>Had to avoid creators who had previously promoted competing or low-quality nutrition brands, diluting trust</li>
+        </ul>
+      </div>
+
+      <div class="challenge-card">
+        <div class="challenge-card-num">03</div>
+        <h3 class="challenge-card-title">Keeping content authentic despite scripted briefs</h3>
+        <ul class="challenge-bullets">
+          <li>Brand required scripted, brand-focused content — harder to make feel native and organic in a feed of personal training content</li>
+          <li>High skip rates are expected with scripted content; managing CPV within a fixed budget was the defining operational challenge</li>
+          <li>Content needed to educate on product benefit ("how it helps in your actual workout") without feeling like a direct-response ad</li>
+        </ul>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<!-- ─── 03 / SOLUTION ─────────────────────────────────── -->
+<div class="section-dark">
+  <div class="section-dark-inner">
+    <span class="section-number" style="color: var(--accent);">03 /</span>
+    <h2 class="section-title">Solution</h2>
+
+    <div class="solution-steps">
+
+      <div class="solution-step">
+        <div class="step-num">1</div>
+        <div class="step-content">
+          <span class="step-tag">Discovery</span>
+          <h3 class="step-title">Creator Discovery</h3>
+          <p class="step-body">Galvor scanned fitness, gym, cricket, and sports lifestyle creators with an audience composition filter front and centre. Male 18–35, training-focused audience was the primary selection criterion — not follower count, not engagement rate on its own. Creators with smaller but highly aligned audiences were actively preferred over large lifestyle accounts with diluted fitness audiences.</p>
+        </div>
+      </div>
+
+      <div class="solution-step">
+        <div class="step-num">2</div>
+        <div class="step-content">
+          <span class="step-tag">Vetting</span>
+          <h3 class="step-title">Brand Safety Vetting</h3>
+          <p class="step-body">Each shortlisted creator was audited for supplement and nutrition brand history. Any creator who had endorsed competing brands, low-quality protein blends, or overly generic health products was eliminated. The goal was a clean, credible creator slate — creators who could genuinely position C4 and Xtend as premium performance tools, not just sponsors.</p>
+        </div>
+      </div>
+
+      <div class="solution-step">
+        <div class="step-num">3</div>
+        <div class="step-content">
+          <span class="step-tag">Brief</span>
+          <h3 class="step-title">Content Angle Alignment</h3>
+          <p class="step-body">All 9 creators were briefed on a single unifying angle: <em style="color: var(--accent);">"How C4 / Xtend helps in your workout."</em> A performance-first message that kept the product central without being purely transactional. Creators were given latitude in hook construction and format, but the narrative thread — energy, recovery, performance — was locked across the campaign.</p>
+        </div>
+      </div>
+
+      <div class="solution-step" style="border-bottom: none;">
+        <div class="step-num">4</div>
+        <div class="step-content">
+          <span class="step-tag">Formats</span>
+          <h3 class="step-title">Format &amp; Niche Diversification</h3>
+          <p class="step-body">Formats were deliberately spread across gym workout reels, cricket and sport integration, daily vlog style, and FTC (fitness-to-camera) content. This maximised sub-audience reach — the cricket-gym crossover (Pranjal, Nainshika) addressed performance sport audiences; the trending audio formats (Neha, Muskan) targeted discovery-driven Reels viewers; the direct gym workout content anchored brand relevance for core fitness audiences.</p>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<!-- ─── 04 / CONTENT ANALYSIS ─────────────────────────── -->
+<div style="background: var(--bg);">
+  <div class="section">
+    <span class="section-number">04 /</span>
+    <h2 class="section-title">What the Content Revealed</h2>
+    <p class="body-text" style="color: var(--muted);">Across 9 creators and 9 reels, three performance patterns emerged.</p>
+
+    <div class="insight-grid">
+
+      <div class="insight-card">
+        <div class="insight-stat">₹0.05 CPV</div>
+        <h3 class="insight-title">Anshika's Outlier Effect</h3>
+        <p class="insight-body">1,28,470 views on a ₹6,000 spend. The reel with the lowest average watch time in the campaign (2 seconds) drove over 50% of total campaign views — proving that a scroll-stopping hook matters more than retention depth when the objective is pure CPV awareness. High skip rate (86.4%), massive reach (1,18,067 accounts). Volume over depth, executed at scale.</p>
+      </div>
+
+      <div class="insight-card">
+        <div class="insight-stat">2,598</div>
+        <h3 class="insight-title">Pranjal's Engagement Depth</h3>
+        <p class="insight-body">43,247 views with the highest interactions in the campaign (2,598) and 268 saves. Cricket × Workout integration resonated deeply with male fitness audiences (96.8% male reach). Niche content — sport-specific, non-generic — beats broad gym content for engagement quality. Pranjal's content had the highest average watch time at 11 seconds, the only creator to hold attention past 10 seconds.</p>
+      </div>
+
+      <div class="insight-card">
+        <div class="insight-stat">17 sec</div>
+        <h3 class="insight-title">Muskan's Watch Time Advantage</h3>
+        <p class="insight-body">17 seconds average watch time — the highest in the campaign — with only a 15.8% skip rate. The trending audio FTC format dramatically improves watch completion even in sponsored content. Muskan's reel had the best viewer quality per view: the audience that did watch, watched through. Best depth metric even if not the highest volume play.</p>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<!-- ─── 05 / RESULTS ──────────────────────────────────── -->
+<div class="results-section">
+  <div class="results-inner">
+
+    <span class="section-number" style="color: var(--accent);">05 /</span>
+
+    <div class="results-headline">
+      <div class="cpv-big">₹<span>0.31</span></div>
+      <div class="cpv-label">blended CPV · 9 creators · ₹78,500 total spend</div>
+    </div>
+
+    <div class="creator-table-wrap">
+      <table class="creator-table">
+        <thead>
+          <tr>
+            <th>Creator</th>
+            <th>Spend (₹)</th>
+            <th>Views</th>
+            <th>CPV (₹)</th>
+            <th>Accounts Reached</th>
+            <th>Avg Watch (s)</th>
+            <th>Skip Rate</th>
+            <th>Interactions</th>
+          </tr>
+        </thead>
+        <tbody>
+
+          <tr>
+            <td><a class="creator-name-link" href="https://www.instagram.com/reel/DWETD_CFuyH/" target="_blank" rel="noopener">Nainshika</a></td>
+            <td>₹18,000</td>
+            <td>13,357</td>
+            <td class="cpv-mid">₹1.35</td>
+            <td>9,522</td>
+            <td>9</td>
+            <td>51.3%</td>
+            <td>578</td>
+          </tr>
+
+          <tr>
+            <td><a class="creator-name-link" href="https://www.instagram.com/reel/DVlYkftIHD0/" target="_blank" rel="noopener">Chaitanya</a></td>
+            <td>₹4,000</td>
+            <td>2,586</td>
+            <td class="cpv-mid">₹1.55</td>
+            <td>1,318</td>
+            <td>8</td>
+            <td>60.0%</td>
+            <td>124</td>
+          </tr>
+
+          <tr>
+            <td><a class="creator-name-link" href="https://www.instagram.com/reel/DU44NUBE7SF/" target="_blank" rel="noopener">Neha</a></td>
+            <td>₹4,000</td>
+            <td>7,262</td>
+            <td class="cpv-good">₹0.55</td>
+            <td>5,909</td>
+            <td>4</td>
+            <td>74.3%</td>
+            <td>96</td>
+          </tr>
+
+          <tr>
+            <td><a class="creator-name-link" href="https://www.instagram.com/reel/DUnVsNiEqfi/" target="_blank" rel="noopener">Pranjal</a></td>
+            <td>₹14,000</td>
+            <td>43,247</td>
+            <td class="cpv-good">₹0.32</td>
+            <td>23,256</td>
+            <td>11</td>
+            <td>60.4%</td>
+            <td>2,598</td>
+          </tr>
+
+          <tr>
+            <td><a class="creator-name-link" href="https://www.instagram.com/reel/DUIol8SEr00/" target="_blank" rel="noopener">Muskan</a></td>
+            <td>₹3,000</td>
+            <td>21,429</td>
+            <td class="cpv-good">₹0.14</td>
+            <td>1,221</td>
+            <td>17</td>
+            <td>15.8%</td>
+            <td>568</td>
+          </tr>
+
+          <tr>
+            <td><a class="creator-name-link" href="https://www.instagram.com/reel/DT0VNQhEsAv/" target="_blank" rel="noopener">Shruti</a></td>
+            <td>₹15,000</td>
+            <td>21,839</td>
+            <td class="cpv-good">₹0.69</td>
+            <td>13,460</td>
+            <td>6</td>
+            <td>67.8%</td>
+            <td>568</td>
+          </tr>
+
+          <tr class="best-row">
+            <td><a class="creator-name-link" href="https://www.instagram.com/p/DVBNZn6CGoV/" target="_blank" rel="noopener">Anshika</a><span class="star-badge">Best CPV</span></td>
+            <td>₹6,000</td>
+            <td>1,28,470</td>
+            <td class="cpv-best">₹0.05</td>
+            <td>1,18,067</td>
+            <td>2</td>
+            <td>86.4%</td>
+            <td>702</td>
+          </tr>
+
+          <tr>
+            <td><a class="creator-name-link" href="https://www.instagram.com/p/DVkygadE2Et/" target="_blank" rel="noopener">Aryaman</a></td>
+            <td>₹7,000</td>
+            <td>5,109</td>
+            <td class="cpv-mid">₹1.37</td>
+            <td>2,875</td>
+            <td>7</td>
+            <td>65.1%</td>
+            <td>182</td>
+          </tr>
+
+          <tr>
+            <td><a class="creator-name-link" href="https://www.instagram.com/p/DV3MfTagA23/" target="_blank" rel="noopener">Devesh</a></td>
+            <td>₹7,500</td>
+            <td>12,426</td>
+            <td class="cpv-good">₹0.60</td>
+            <td>9,340</td>
+            <td>4</td>
+            <td>63.5%</td>
+            <td>392</td>
+          </tr>
+
+          <tr class="total-row">
+            <td><span class="creator-name-link">Total</span></td>
+            <td>₹78,500</td>
+            <td>2,55,725</td>
+            <td style="color: var(--green); font-weight: 700;">₹0.31</td>
+            <td>1,84,968</td>
+            <td>7.6 avg</td>
+            <td>—</td>
+            <td>5,808</td>
+          </tr>
+
+        </tbody>
+      </table>
+    </div>
+
+    <div class="kpi-strip">
+      <div class="kpi-card">
+        <div class="kpi-value" style="color: var(--orange);">5,311</div>
+        <div class="kpi-label">Total Likes</div>
+      </div>
+      <div class="kpi-card">
+        <div class="kpi-value" style="color: var(--green);">583</div>
+        <div class="kpi-label">Total Saves</div>
+      </div>
+      <div class="kpi-card">
+        <div class="kpi-value" style="color: var(--accent);">367</div>
+        <div class="kpi-label">Total Shares</div>
+      </div>
+      <div class="kpi-card">
+        <div class="kpi-value" style="color: var(--gold);">5,808</div>
+        <div class="kpi-label">Total Interactions</div>
+      </div>
+    </div>
+
+    <div class="pull-quote">
+      <p>"Anshika's reel at ₹0.05 CPV proved that on a pure awareness objective, the right creator + the right hook beats budget every time — 50% of total campaign views came from one ₹6,000 investment."</p>
+    </div>
+
+  </div>
+</div>
+
+<!-- ─── FOOTER ────────────────────────────────────────── -->
+<footer>
+  <div class="footer-brand">Galvor <span>AI</span></div>
+  <div class="footer-note">Influence that pays back · galvor.ai</div>
+</footer>
+
+</body>
+</html>
